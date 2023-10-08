@@ -1,4 +1,4 @@
-module rent-app
+module rentabook
 
 go 1.21.0
 

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"rent-app/model/domain"
+	"rentabook/model/domain"
 
 	"gorm.io/gorm"
 )

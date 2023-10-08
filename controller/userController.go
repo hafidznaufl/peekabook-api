@@ -2,10 +2,10 @@ package controller
 
 import (
 	"net/http"
-	"rent-app/context"
-	"rent-app/model/web"
-	"rent-app/utils/helper"
-	"rent-app/utils/res"
+	"rentabook/context"
+	"rentabook/model/web"
+	"rentabook/utils/helper"
+	"rentabook/utils/res"
 
 	"strings"
 

@@ -1,8 +1,8 @@
-package helper
+package res
 
 import (
-	"rent-app/model/domain"
-	"rent-app/model/web"
+	"rentabook/model/domain"
+	"rentabook/model/web"
 )
 
 func UserDomainToUserCreateResponse(user *domain.User) web.UserCreateResponse {

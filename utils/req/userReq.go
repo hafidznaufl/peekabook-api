@@ -1,8 +1,8 @@
 package req
 
 import (
-	"rent-app/model/domain"
-	"rent-app/model/web"
+	"rentabook/model/domain"
+	"rentabook/model/web"
 )
 
 func UserCreateRequestToUserDomain(request web.UserCreateRequest) *domain.User {

@@ -2,9 +2,9 @@ package routes
 
 import (
 	"net/http"
-	"rent-app/context"
-	"rent-app/controller"
-	"rent-app/repository"
+	"rentabook/context"
+	"rentabook/controller"
+	"rentabook/repository"
 
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
@@ -18,7 +18,7 @@ func Init(e *echo.Echo,db *gorm.DB) {
 
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Welcome to Rent Book API Services")
+		return c.String(http.StatusOK, "Welcome to Rent A Book API Services")
 	})
 
 	user := e.Group("user")

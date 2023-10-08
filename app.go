@@ -1,8 +1,8 @@
 package main
 
 import (
-	"rent-app/config"
-	"rent-app/routes"
+	"rentabook/config"
+	"rentabook/routes"
 
 	"github.com/labstack/echo/v4"
 )

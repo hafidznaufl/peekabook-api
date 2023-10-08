@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
-	"rent-app/model/schema"
+	"rentabook/model/schema"
 
 	"path/filepath"
 

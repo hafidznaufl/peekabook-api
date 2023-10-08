@@ -2,10 +2,11 @@ package context
 
 import (
 	"fmt"
-	"rent-app/model/domain"
-	"rent-app/model/web"
-	"rent-app/repository"
-	"rent-app/utils/helper"
+	"rentabook/model/domain"
+	"rentabook/model/web"
+	"rentabook/repository"
+	"rentabook/utils/helper"
+	"rentabook/utils/req"
 )
 
 type UserContext interface {
@@ -23,16 +24,14 @@ func NewUserContext(userRepository repository.UserRepository) UserContext {
 
 func (context *UserContextImpl) CreateUser(request web.UserCreateRequest) (*domain.User, error) {
 
-	// Check if the email already exists
 	existingUser, _ := context.UserRepository.FindByEmail(request.Email)
 	if existingUser != nil {
 		return nil, fmt.Errorf("Email Already Exist")
 	}
 
 	// Convert request to domain
-	user := helper.UserCreateRequestToUserDomain(request)
+	user := req.UserCreateRequestToUserDomain(request)
 
-	// Convert password to hash
 	user.Password = helper.HashPassword(user.Password)
 
 	result, err := context.UserRepository.Save(user)
