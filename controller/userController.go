@@ -2,10 +2,11 @@ package controller
 
 import (
 	"net/http"
-	"rentabook/context"
-	"rentabook/model/web"
-	"rentabook/utils/helper"
-	"rentabook/utils/res"
+	"peekabook/context"
+	"peekabook/model/web"
+	"peekabook/utils/helper"
+	"peekabook/utils/res"
+	"strconv"
 
 	"strings"
 
@@ -13,58 +14,155 @@ import (
 )
 
 type UserController interface {
-	CreateUserController() echo.HandlerFunc
-	GetAllUserController() echo.HandlerFunc
+	RegisterUserController(ctx echo.Context) error
+	LoginUserController(ctx echo.Context) error
+	UpdateUserController(ctx echo.Context) error
+	GetUserController(ctx echo.Context) error
+	GetUsersController(ctx echo.Context) error
+	DeleteUserController(ctx echo.Context) error
 }
 
 type UserControllerImpl struct {
 	UserContext context.UserContext
 }
 
-func NewUserController(userService context.UserContext) UserController {
-	return &UserControllerImpl{UserContext: userService}
+func NewUserController(userContext context.UserContext) UserController {
+	return &UserControllerImpl{UserContext: userContext}
 }
 
-func (UserController *UserControllerImpl) GetAllUserController() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		data, err := UserController.UserContext.GetAllUser()
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error Get Data"))
+func (c *UserControllerImpl) RegisterUserController(ctx echo.Context) error {
+	userCreateRequest := web.UserCreateRequest{}
+	err := ctx.Bind(&userCreateRequest)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
+	}
+
+	response, err := c.UserContext.CreateUser(ctx, userCreateRequest)
+	if err != nil {
+		if strings.Contains(err.Error(), "Validation failed") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
+
 		}
 
-		results := res.ConvertResponse(data)
+		if strings.Contains(err.Error(), "Email Already Exist") {
+			return ctx.JSON(http.StatusConflict, helper.ErrorResponse("Email Already Exist"))
 
-		return c.JSON(http.StatusOK, helper.SuccessResponse("Success Retrieve Data", results))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Sign Up Error"))
 	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign Up", response))
 }
 
-func (UserController *UserControllerImpl) CreateUserController() echo.HandlerFunc {
-	return func(c echo.Context) error {
-		userCreateRequest := web.UserCreateRequest{}
-		err := c.Bind(&userCreateRequest)
-		if err != nil {
-			return c.JSON(http.StatusBadRequest, helper.ErrorResponse("Create Input Error"))
-		}
-
-		data, err := UserController.UserContext.CreateUser(userCreateRequest)
-		if err != nil {
-			if strings.Contains("Email Already Exist", err.Error()) {
-				return c.JSON(http.StatusBadRequest, helper.ErrorResponse("Email Already Exist"))
-			}
-
-			return c.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Data Error"))
-		}
-
-		results := res.UserDomainToUserCreateResponse(data)
-
-		token, err := helper.GenerateToken(&userCreateRequest, uint(data.ID))
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error Generate Token"))
-
-		}
-
-		results.Token = token
-
-		return c.JSON(http.StatusCreated, helper.SuccessResponse("Success Create User", results))
+func (c *UserControllerImpl) LoginUserController(ctx echo.Context) error {
+	userLoginRequest := web.UserLoginRequest{}
+	err := ctx.Bind(&userLoginRequest)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
 	}
+
+	response, err := c.UserContext.LoginUser(ctx, userLoginRequest)
+	if err != nil {
+		if strings.Contains(err.Error(), "Validation failed") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
+		}
+
+		if strings.Contains(err.Error(), "Invalid Email or Password") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Email or Password"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Sign In Error"))
+	}
+
+	userLoginResponse := res.UserDomainToUserLoginResponse(response)
+
+	token, err := helper.GenerateToken(&userLoginResponse, uint(response.ID))
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Generate JWT Error"))
+	}
+
+	userLoginResponse.Token = token
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign In", userLoginResponse))
+}
+
+func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
+	userId := ctx.Param("id")
+	userIdInt, err := strconv.Atoi(userId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	userUpdateRequest := web.UserUpdateRequest{}
+	err = ctx.Bind(&userUpdateRequest)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
+	}
+
+	response, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "Validation failed") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
+		}
+
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update User Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
+}
+
+func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
+	userId := ctx.Param("id")
+	userIdInt, err := strconv.Atoi(userId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	response, err := c.UserContext.FindById(ctx, userIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get User Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
+}
+
+func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
+	response, err := c.UserContext.FindAll(ctx)
+	if err != nil {
+		if strings.Contains(err.Error(), "Users Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Users Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Users Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
+}
+
+func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
+	userId := ctx.Param("id")
+	userIdInt, err := strconv.Atoi(userId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	err = c.UserContext.DeleteUser(ctx, userIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete User Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", nil))
 }

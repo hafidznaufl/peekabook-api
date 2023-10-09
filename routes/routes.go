@@ -2,28 +2,37 @@ package routes
 
 import (
 	"net/http"
-	"rentabook/context"
-	"rentabook/controller"
-	"rentabook/repository"
+	"os"
+	"peekabook/context"
+	"peekabook/controller"
+	"peekabook/repository"
 
+	"github.com/go-playground/validator"
+	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
 
-func Init(e *echo.Echo,db *gorm.DB) {
+func Init(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	userRepository := repository.NewUserRepository(db)
-	userServcice := context.NewUserContext(userRepository)
-	userController := controller.NewUserController(userServcice)
-
+	userContext := context.NewUserContext(userRepository, validate)
+	userController := controller.NewUserController(userContext)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Welcome to Rent A Book API Services")
 	})
 
-	user := e.Group("user")
+	usersGroup := e.Group("users")
 
-	user.GET("", userController.GetAllUserController())
-	user.POST("", userController.CreateUserController())
+	usersGroup.POST("", userController.RegisterUserController)
+	usersGroup.POST("/login", userController.LoginUserController)
+
+	usersGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
+
+	usersGroup.PUT("/:id", userController.UpdateUserController)
+	usersGroup.GET("/:id", userController.GetUserController)
+	usersGroup.GET("", userController.GetUsersController)
+	usersGroup.DELETE("/:id", userController.DeleteUserController)
 
 }

@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
-	"rentabook/model/schema"
+	"peekabook/model/schema"
 
 	"path/filepath"
 
