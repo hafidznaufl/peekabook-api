@@ -4,16 +4,18 @@ import (
 	"rentabook/config"
 	"rentabook/routes"
 
+	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
 	app := echo.New()
+	validate := validator.New()
 
 	DB := config.ConnectDB()
 
-	routes.Init(app, DB)
+	routes.Init(app, DB, validate)
 
 	app.Pre(middleware.RemoveTrailingSlash())
 	app.Use(middleware.CORS())

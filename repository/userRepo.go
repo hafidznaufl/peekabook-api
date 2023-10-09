@@ -7,9 +7,12 @@ import (
 )
 
 type UserRepository interface {
-	Save(user *domain.User) (*domain.User, error)
-	FindAll() ([]domain.User, error)
+	Create(user *domain.User) (*domain.User, error)
+	Update(user *domain.User, id int) (*domain.User, error)
+	FindById(id int) (*domain.User, error)
 	FindByEmail(email string) (*domain.User, error)
+	FindAll() ([]domain.User, error)
+	Delete(id int) error
 }
 
 type UserRepositoryImpl struct {
@@ -20,8 +23,8 @@ func NewUserRepository(DB *gorm.DB) UserRepository {
 	return &UserRepositoryImpl{DB: DB}
 }
 
-func (repository *UserRepositoryImpl) Save(user *domain.User) (*domain.User, error) {
-	result := repository.DB.Save(&user)
+func (repository *UserRepositoryImpl) Create(user *domain.User) (*domain.User, error) {
+	result := repository.DB.Create(&user)
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -29,15 +32,24 @@ func (repository *UserRepositoryImpl) Save(user *domain.User) (*domain.User, err
 	return user, nil
 }
 
-func (repository *UserRepositoryImpl) FindAll() ([]domain.User, error) {
-	users := []domain.User{}
-
-	result := repository.DB.Find(&users)
+func (repository *UserRepositoryImpl) Update(user *domain.User, id int) (*domain.User, error) {
+	result := repository.DB.Table("users").Where("id = ?", id).Updates(domain.User{Name: user.Name, Email: user.Email, Password: user.Password})
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return users, nil
+	return user, nil
+}
+
+func (repository *UserRepositoryImpl) FindById(id int) (*domain.User, error) {
+	user := domain.User{}
+
+	result := repository.DB.First(&user, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &user, nil
 }
 
 func (repository *UserRepositoryImpl) FindByEmail(email string) (*domain.User, error) {
@@ -49,4 +61,24 @@ func (repository *UserRepositoryImpl) FindByEmail(email string) (*domain.User, e
 	}
 
 	return &user, nil
+}
+
+func (repository *UserRepositoryImpl) FindAll() ([]domain.User, error) {
+	user := []domain.User{}
+
+	result := repository.DB.Find(&user)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return user, nil
+}
+
+func (repository *UserRepositoryImpl) Delete(id int) error {
+	result := repository.DB.Table("users").Where("id = ?", id).Unscoped().Delete(id)
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
 }

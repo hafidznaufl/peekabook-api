@@ -5,8 +5,9 @@ import (
 	"rentabook/model/web"
 )
 
-func UserDomainToUserCreateResponse(user *domain.User) web.UserCreateResponse {
-	return web.UserCreateResponse{
+func UserDomainToUserLoginResponse(user *domain.User) web.UserLoginResponse {
+	return web.UserLoginResponse{
+		Name: user.Name,
 		Email: user.Email,
 	}
 }
