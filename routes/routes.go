@@ -3,9 +3,9 @@ package routes
 import (
 	"net/http"
 	"os"
-	"rentabook/context"
-	"rentabook/controller"
-	"rentabook/repository"
+	"peekabook/context"
+	"peekabook/controller"
+	"peekabook/repository"
 
 	"github.com/go-playground/validator"
 	echojwt "github.com/labstack/echo-jwt/v4"

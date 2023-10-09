@@ -1,4 +1,4 @@
-module rentabook
+module peekabook
 
 go 1.21.0
 

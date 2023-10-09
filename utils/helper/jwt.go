@@ -2,7 +2,7 @@ package helper
 
 import (
 	"os"
-	"rentabook/model/web"
+	"peekabook/model/web"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"

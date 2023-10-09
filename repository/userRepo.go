@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"rentabook/model/domain"
+	"peekabook/model/domain"
 
 	"gorm.io/gorm"
 )

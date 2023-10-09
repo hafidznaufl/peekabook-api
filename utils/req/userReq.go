@@ -1,8 +1,8 @@
 package req
 
 import (
-	"rentabook/model/domain"
-	"rentabook/model/web"
+	"peekabook/model/domain"
+	"peekabook/model/web"
 )
 
 func UserCreateRequestToUserDomain(request web.UserCreateRequest) *domain.User {

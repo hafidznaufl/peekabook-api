@@ -1,8 +1,8 @@
 package res
 
 import (
-	"rentabook/model/domain"
-	"rentabook/model/web"
+	"peekabook/model/domain"
+	"peekabook/model/web"
 )
 
 func UserDomainToUserLoginResponse(user *domain.User) web.UserLoginResponse {

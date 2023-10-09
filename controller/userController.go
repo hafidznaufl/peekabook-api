@@ -2,10 +2,10 @@ package controller
 
 import (
 	"net/http"
-	"rentabook/context"
-	"rentabook/model/web"
-	"rentabook/utils/helper"
-	"rentabook/utils/res"
+	"peekabook/context"
+	"peekabook/model/web"
+	"peekabook/utils/helper"
+	"peekabook/utils/res"
 	"strconv"
 
 	"strings"

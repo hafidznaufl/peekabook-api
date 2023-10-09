@@ -1,8 +1,8 @@
 package main
 
 import (
-	"rentabook/config"
-	"rentabook/routes"
+	"peekabook/config"
+	"peekabook/routes"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"

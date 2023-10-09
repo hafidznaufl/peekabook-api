@@ -2,11 +2,11 @@ package context
 
 import (
 	"fmt"
-	"rentabook/model/domain"
-	"rentabook/model/web"
-	"rentabook/repository"
-	"rentabook/utils/helper"
-	"rentabook/utils/req"
+	"peekabook/model/domain"
+	"peekabook/model/web"
+	"peekabook/repository"
+	"peekabook/utils/helper"
+	"peekabook/utils/req"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
