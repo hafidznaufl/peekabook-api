@@ -1,6 +1,6 @@
-# Rentabook API
+# PeekaBook API
 
-Aplikasi "Rentabook" adalah sistem manajemen peminjaman buku yang memungkinkan pengguna untuk meminjam buku, membuat permintaan buku, dan melihat informasi buku yang tersedia. API ini menyediakan layanan yang diperlukan untuk mengakses dan mengelola data dalam sistem ini.
+Aplikasi "Peekabook" adalah sistem manajemen peminjaman buku yang memungkinkan pengguna untuk meminjam buku, membuat permintaan buku, dan melihat informasi buku yang tersedia. API ini menyediakan layanan yang diperlukan untuk mengakses dan mengelola data dalam sistem ini.
 
 ## Daftar Isi
 - [Instalasi](#instalasi)
@@ -48,18 +48,18 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 - DELETE `/books/:id`: Menghapus buku berdasarkan ID.
 
 ### Peminjaman (Borrowing):
-- GET `/borrowings`: Mendapatkan daftar semua peminjaman.
-- GET `/borrowings/:id`: Mendapatkan data peminjaman berdasarkan ID.
-- POST `/borrowings`: Melakukan peminjaman buku.
-- PUT `/borrowings/:id`: Mengupdate data peminjaman berdasarkan ID.
-- DELETE `/borrowings/:id`: Menghapus data peminjaman berdasarkan ID.
+- GET `/borrow`: Mendapatkan daftar semua peminjaman.
+- GET `/borrow/:id`: Mendapatkan data peminjaman berdasarkan ID.
+- POST `/borrow`: Melakukan peminjaman buku.
+- PUT `/borrow/:id`: Mengupdate data peminjaman berdasarkan ID.
+- DELETE `/borrow/:id`: Menghapus data peminjaman berdasarkan ID.
 
 ### Permintaan Buku (Book Requests):
-- GET `/book-requests`: Mendapatkan daftar semua permintaan buku.
-- GET `/book-requests/:id`: Mendapatkan data permintaan buku berdasarkan ID.
-- POST `/book-requests`: Membuat permintaan buku baru.
-- PUT `/book-requests/:id`: Mengupdate data permintaan buku berdasarkan ID.
-- DELETE `/book-requests/:id`: Menghapus data permintaan buku berdasarkan ID.
+- GET `/requests`: Mendapatkan daftar semua permintaan buku.
+- GET `/requests/:id`: Mendapatkan data permintaan buku berdasarkan ID.
+- POST `/requests`: Membuat permintaan buku baru.
+- PUT `/requests/:id`: Mengupdate data permintaan buku berdasarkan ID.
+- DELETE `/requests/:id`: Menghapus data permintaan buku berdasarkan ID.
 
 ## Desain Database
 
@@ -75,4 +75,4 @@ Jika Anda ingin berkontribusi pada proyek ini, silakan kirim pull request atau l
 
 Proyek ini dilisensikan di bawah 2023 Rentabook API Team. Silakan merujuk ke file [LICENSE](LICENSE) untuk informasi lebih lanjut.
 
-© 2023 Rentabook API Team
+© 2023 Hafidz Naufal
