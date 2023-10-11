@@ -65,7 +65,7 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 
 Aplikasi ini menggunakan desain database yang telah diatur sebelumnya. Berikut adalah skema desain ERD yang digunakan:
 
-[![](https://app.eraser.io/workspace/jIvOglfvfnBAHwnwQba4/preview?elements=zbpVw5grAPZo08LClUVGHw&type=embed)](https://app.eraser.io/workspace/jIvOglfvfnBAHwnwQba4?elements=zbpVw5grAPZo08LClUVGHw)
+[![](https://app.eraser.io/workspace/jIvOglfvfnBAHwnwQba4/preview?elements=5baF7S8UzmCG6QYUc-x8bw&type=embed)](https://app.eraser.io/workspace/jIvOglfvfnBAHwnwQba4?elements=5baF7S8UzmCG6QYUc-x8bw)
 
 ## Kontribusi
 
