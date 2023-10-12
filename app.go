@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"peekabook/config"
 	"peekabook/routes"
 
@@ -14,6 +15,10 @@ func main() {
 	validate := validator.New()
 
 	DB := config.ConnectDB()
+
+	app.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Welcome to Peek A Book API Services")
+	})
 
 	routes.Init(app, DB, validate)
 

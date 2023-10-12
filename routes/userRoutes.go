@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"net/http"
 	"os"
 	"peekabook/context"
 	"peekabook/controller"
@@ -18,10 +17,6 @@ func Init(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	userRepository := repository.NewUserRepository(db)
 	userContext := context.NewUserContext(userRepository, validate)
 	userController := controller.NewUserController(userContext)
-
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Welcome to Rent A Book API Services")
-	})
 
 	usersGroup := e.Group("users")
 

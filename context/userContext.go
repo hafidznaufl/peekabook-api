@@ -34,21 +34,19 @@ func NewUserContext(userRepository repository.UserRepository, validate *validato
 }
 
 func (context *UserContextImpl) CreateUser(ctx echo.Context, request web.UserCreateRequest) (*domain.User, error) {
-	// Check if the request is valid
+
 	err := context.Validate.Struct(request)
 	if err != nil {
 		return nil, helper.ValidationError(ctx, err)
 	}
 
-	// Check if the email already exists
 	existingUser, _ := context.UserRepository.FindByEmail(request.Email)
 	if existingUser != nil {
 		return nil, fmt.Errorf("Email Already Exist")
 	}
 
-	// Convert request to domain
 	user := req.UserCreateRequestToUserDomain(request)
-	// Convert password to hash
+
 	user.Password = helper.HashPassword(user.Password)
 
 	result, err := context.UserRepository.Create(user)
@@ -60,22 +58,18 @@ func (context *UserContextImpl) CreateUser(ctx echo.Context, request web.UserCre
 }
 
 func (context *UserContextImpl) LoginUser(ctx echo.Context, request web.UserLoginRequest) (*domain.User, error) {
-	// Check if the request is valid
 	err := context.Validate.Struct(request)
 	if err != nil {
 		return nil, helper.ValidationError(ctx, err)
 	}
 
-	// Check if the user exists
 	existingUser, err := context.UserRepository.FindByEmail(request.Email)
 	if err != nil {
 		return nil, fmt.Errorf("Invalid Email or Password")
 	}
 
-	// Convert request to domain
 	user := req.UserLoginRequestToUserDomain(request)
 
-	// Compare password
 	err = helper.ComparePassword(existingUser.Password, user.Password)
 	if err != nil {
 		return nil, fmt.Errorf("Invalid Email or Password")
@@ -91,13 +85,11 @@ func (context *UserContextImpl) UpdateUser(ctx echo.Context, request web.UserUpd
 		return nil, helper.ValidationError(ctx, err)
 	}
 
-	// Check if the user exists
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
 		return nil, fmt.Errorf("User Not Found")
 	}
 
-	// Convert request to domain
 	user := req.UserUpdateRequestToUserDomain(request)
 	user.Password = helper.HashPassword(user.Password)
 
