@@ -2,6 +2,8 @@ package repository
 
 import (
 	"peekabook/model/domain"
+	"peekabook/utils/req"
+	"peekabook/utils/res"
 
 	"gorm.io/gorm"
 )
@@ -24,12 +26,15 @@ func NewAdminRepository(DB *gorm.DB) AdminRepository {
 }
 
 func (repository *AdminRepositoryImpl) Create(admin *domain.Admin) (*domain.Admin, error) {
-	result := repository.DB.Create(&admin)
+	adminDb := req.AdminDomaintoAdminSchema(*admin)
+	result := repository.DB.Create(&adminDb)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return admin, nil
+	results := res.AdminSchemaToAdminDomain(adminDb)
+
+	return results, nil
 }
 
 func (repository *AdminRepositoryImpl) Update(admin *domain.Admin, id int) (*domain.Admin, error) {

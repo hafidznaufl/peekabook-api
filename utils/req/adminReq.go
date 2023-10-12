@@ -2,6 +2,7 @@ package req
 
 import (
 	"peekabook/model/domain"
+	"peekabook/model/schema"
 	"peekabook/model/web"
 )
 
@@ -24,6 +25,14 @@ func AdminUpdateRequestToAdminDomain(request web.AdminUpdateRequest) *domain.Adm
 	return &domain.Admin{
 		Name: request.Name,
 		Email: request.Email,
+		Password: request.Password,
+	}
+}
+
+func AdminDomaintoAdminSchema(request domain.Admin) *schema.Admin {
+	return &schema.Admin{
+		Name:     request.Name,
+		Email:    request.Email,
 		Password: request.Password,
 	}
 }
