@@ -2,6 +2,8 @@ package repository
 
 import (
 	"peekabook/model/domain"
+	"peekabook/utils/req"
+	"peekabook/utils/res"
 
 	"gorm.io/gorm"
 )
@@ -24,12 +26,15 @@ func NewUserRepository(DB *gorm.DB) UserRepository {
 }
 
 func (repository *UserRepositoryImpl) Create(user *domain.User) (*domain.User, error) {
-	result := repository.DB.Create(&user)
+	userDb := req.UserDomaintoUserSchema(*user)
+	result := repository.DB.Create(&userDb)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return user, nil
+	results := res.UserSchemaToUserDomain(userDb)
+
+	return results, nil
 }
 
 func (repository *UserRepositoryImpl) Update(user *domain.User, id int) (*domain.User, error) {

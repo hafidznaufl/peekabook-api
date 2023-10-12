@@ -37,7 +37,7 @@ func (c *UserControllerImpl) RegisterUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
 	}
 
-	response, err := c.UserContext.CreateUser(ctx, userCreateRequest)
+	result, err := c.UserContext.CreateUser(ctx, userCreateRequest)
 	if err != nil {
 		if strings.Contains(err.Error(), "Validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
@@ -51,6 +51,8 @@ func (c *UserControllerImpl) RegisterUserController(ctx echo.Context) error {
 
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Sign Up Error"))
 	}
+
+	response := res.UserDomaintoUserResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign Up", response))
 }
@@ -100,7 +102,7 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
 	}
 
-	response, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
+	result, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "Validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
@@ -113,6 +115,8 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update User Error"))
 	}
 
+	response := res.UserDomaintoUserResponse(result)
+
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
 }
 
@@ -123,7 +127,7 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
 	}
 
-	response, err := c.UserContext.FindById(ctx, userIdInt)
+	result, err := c.UserContext.FindById(ctx, userIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "User Not Found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
@@ -132,11 +136,13 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get User Data Error"))
 	}
 
+	response := res.UserDomaintoUserResponse(result)
+
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
 }
 
 func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
-	response, err := c.UserContext.FindAll(ctx)
+	result, err := c.UserContext.FindAll(ctx)
 	if err != nil {
 		if strings.Contains(err.Error(), "Users Not Found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Users Not Found"))
@@ -144,6 +150,8 @@ func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Users Data Error"))
 	}
+
+	response := res.ConvertResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
 }
