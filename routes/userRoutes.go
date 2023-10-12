@@ -12,7 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func Init(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
+func UserRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	userRepository := repository.NewUserRepository(db)
 	userContext := context.NewUserContext(userRepository, validate)

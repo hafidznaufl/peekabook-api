@@ -20,7 +20,8 @@ func main() {
 		return c.String(http.StatusOK, "Welcome to Peek A Book API Services")
 	})
 
-	routes.Init(app, DB, validate)
+	routes.UserRoutes(app, DB, validate)
+	routes.AdminRoutes(app, DB, validate)
 
 	app.Pre(middleware.RemoveTrailingSlash())
 	app.Use(middleware.CORS())
