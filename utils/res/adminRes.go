@@ -31,7 +31,7 @@ func AdminDomaintoAdminResponse(user *domain.Admin) web.AdminReponse {
 	}
 }
 
-func ConvertResponseAdmin(users []domain.Admin) []web.AdminReponse {
+func ConvertAdminResponse(users []domain.Admin) []web.AdminReponse {
 	var results []web.AdminReponse
 	for _, user := range users {
 		userResponse := web.AdminReponse{

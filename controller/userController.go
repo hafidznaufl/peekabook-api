@@ -89,37 +89,6 @@ func (c *UserControllerImpl) LoginUserController(ctx echo.Context) error {
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign In", userLoginResponse))
 }
 
-func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
-	userId := ctx.Param("id")
-	userIdInt, err := strconv.Atoi(userId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
-
-	userUpdateRequest := web.UserUpdateRequest{}
-	err = ctx.Bind(&userUpdateRequest)
-	if err != nil {
-		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
-	}
-
-	result, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
-			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
-		}
-
-		if strings.Contains(err.Error(), "User Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update User Error"))
-	}
-
-	response := res.UserDomaintoUserResponse(result)
-
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
-}
-
 func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 	userId := ctx.Param("id")
 	userIdInt, err := strconv.Atoi(userId)
@@ -151,7 +120,7 @@ func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Users Data Error"))
 	}
 
-	response := res.ConvertResponse(result)
+	response := res.ConvertUserResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
 }
@@ -173,4 +142,35 @@ func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", nil))
+}
+
+func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
+	userId := ctx.Param("id")
+	userIdInt, err := strconv.Atoi(userId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	userUpdateRequest := web.UserUpdateRequest{}
+	err = ctx.Bind(&userUpdateRequest)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
+	}
+
+	result, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "Validation failed") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
+		}
+
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update User Error"))
+	}
+
+	response := res.UserDomaintoUserResponse(result)
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
 }

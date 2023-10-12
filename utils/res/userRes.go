@@ -31,7 +31,7 @@ func UserDomaintoUserResponse(user *domain.User) web.UserReponse {
 	}
 }
 
-func ConvertResponse(users []domain.User) []web.UserReponse {
+func ConvertUserResponse(users []domain.User) []web.UserReponse {
 	var results []web.UserReponse
 	for _, user := range users {
 		userResponse := web.UserReponse{
