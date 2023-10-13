@@ -13,7 +13,6 @@ import (
 func main() {
 	app := echo.New()
 	validate := validator.New()
-
 	DB := config.ConnectDB()
 
 	app.GET("/", func(c echo.Context) error {

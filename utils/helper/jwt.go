@@ -26,7 +26,7 @@ func GenerateToken(userLoginResponse *web.UserLoginResponse, id uint) (string, e
 	return validToken, nil
 }
 
-func GenerateTokenAdmin(adminLoginResponse *web.AdminLoginResponse, id uint) (string, error) {
+func GenerateAdminToken(adminLoginResponse *web.AdminLoginResponse, id uint) (string, error) {
 	expireTime := time.Now().Add(time.Hour * 1).Unix()
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true

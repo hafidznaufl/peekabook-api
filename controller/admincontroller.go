@@ -79,7 +79,7 @@ func (c *AdminControllerImpl) LoginAdminController(ctx echo.Context) error {
 
 	adminLoginResponse := res.AdminDomainToAdminLoginResponse(response)
 
-	token, err := helper.GenerateTokenAdmin(&adminLoginResponse, uint(response.ID))
+	token, err := helper.GenerateAdminToken(&adminLoginResponse, uint(response.ID))
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Generate JWT Error"))
 	}

@@ -79,7 +79,7 @@ func (context *AdminContextImpl) LoginAdmin(ctx echo.Context, request web.AdminL
 }
 
 func (context *AdminContextImpl) UpdateAdmin(ctx echo.Context, request web.AdminUpdateRequest, id int) (*domain.Admin, error) {
-	// Check if the request is valid
+
 	err := context.Validate.Struct(request)
 	if err != nil {
 		return nil, helper.ValidationError(ctx, err)
@@ -102,7 +102,7 @@ func (context *AdminContextImpl) UpdateAdmin(ctx echo.Context, request web.Admin
 }
 
 func (context *AdminContextImpl) FindById(ctx echo.Context, id int) (*domain.Admin, error) {
-	// Check if the Admin exists
+
 	existingAdmin, _ := context.AdminRepository.FindById(id)
 	if existingAdmin == nil {
 		return nil, fmt.Errorf("Admin Not Found")
@@ -121,7 +121,7 @@ func (context *AdminContextImpl) FindAll(ctx echo.Context) ([]domain.Admin, erro
 }
 
 func (context *AdminContextImpl) DeleteAdmin(ctx echo.Context, id int) error {
-	// Check if the Admin exists
+
 	existingAdmin, _ := context.AdminRepository.FindById(id)
 	if existingAdmin == nil {
 		return fmt.Errorf("Admin Not Found")

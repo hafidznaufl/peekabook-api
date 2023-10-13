@@ -79,7 +79,7 @@ func (context *UserContextImpl) LoginUser(ctx echo.Context, request web.UserLogi
 }
 
 func (context *UserContextImpl) UpdateUser(ctx echo.Context, request web.UserUpdateRequest, id int) (*domain.User, error) {
-	// Check if the request is valid
+
 	err := context.Validate.Struct(request)
 	if err != nil {
 		return nil, helper.ValidationError(ctx, err)
@@ -102,7 +102,7 @@ func (context *UserContextImpl) UpdateUser(ctx echo.Context, request web.UserUpd
 }
 
 func (context *UserContextImpl) FindById(ctx echo.Context, id int) (*domain.User, error) {
-	// Check if the user exists
+
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
 		return nil, fmt.Errorf("User Not Found")
@@ -121,7 +121,7 @@ func (context *UserContextImpl) FindAll(ctx echo.Context) ([]domain.User, error)
 }
 
 func (context *UserContextImpl) DeleteUser(ctx echo.Context, id int) error {
-	// Check if the user exists
+
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
 		return fmt.Errorf("User Not Found")
