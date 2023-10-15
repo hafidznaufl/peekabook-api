@@ -73,6 +73,6 @@ Jika Anda ingin berkontribusi pada proyek ini, silakan kirim pull request atau l
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah 2023 Rentabook API Team. Silakan merujuk ke file [LICENSE](LICENSE) untuk informasi lebih lanjut.
+Proyek ini dilisensikan di bawah 2023 Peekabook API Team. Silakan merujuk ke file [LICENSE](LICENSE) untuk informasi lebih lanjut.
 
-© 2023 Hafidz Naufal
+© 2023 Peekabook API Team
