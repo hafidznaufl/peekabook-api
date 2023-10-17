@@ -45,11 +45,11 @@ func (context *AdminContextImpl) CreateAdmin(ctx echo.Context, request web.Admin
 		return nil, fmt.Errorf("Email Already Exist")
 	}
 
-	Admin := req.AdminCreateRequestToAdminDomain(request)
+	admin := req.AdminCreateRequestToAdminDomain(request)
 
-	Admin.Password = helper.HashPassword(Admin.Password)
+	admin.Password = helper.HashPassword(admin.Password)
 
-	result, err := context.AdminRepository.Create(Admin)
+	result, err := context.AdminRepository.Create(admin)
 	if err != nil {
 		return nil, fmt.Errorf("Error when creating Admin: %s", err.Error())
 	}
@@ -68,9 +68,9 @@ func (context *AdminContextImpl) LoginAdmin(ctx echo.Context, request web.AdminL
 		return nil, fmt.Errorf("Invalid Email or Password")
 	}
 
-	Admin := req.AdminLoginRequestToAdminDomain(request)
+	admin := req.AdminLoginRequestToAdminDomain(request)
 
-	err = helper.ComparePassword(existingAdmin.Password, Admin.Password)
+	err = helper.ComparePassword(existingAdmin.Password, admin.Password)
 	if err != nil {
 		return nil, fmt.Errorf("Invalid Email or Password")
 	}
@@ -90,10 +90,10 @@ func (context *AdminContextImpl) UpdateAdmin(ctx echo.Context, request web.Admin
 		return nil, fmt.Errorf("Admin Not Found")
 	}
 
-	Admin := req.AdminUpdateRequestToAdminDomain(request)
-	Admin.Password = helper.HashPassword(Admin.Password)
+	admin := req.AdminUpdateRequestToAdminDomain(request)
+	admin.Password = helper.HashPassword(admin.Password)
 
-	result, err := context.AdminRepository.Update(Admin, id)
+	result, err := context.AdminRepository.Update(admin, id)
 	if err != nil {
 		return nil, fmt.Errorf("Error when updating Admin: %s", err.Error())
 	}
@@ -112,12 +112,12 @@ func (context *AdminContextImpl) FindById(ctx echo.Context, id int) (*domain.Adm
 }
 
 func (context *AdminContextImpl) FindAll(ctx echo.Context) ([]domain.Admin, error) {
-	Admins, err := context.AdminRepository.FindAll()
+	admin, err := context.AdminRepository.FindAll()
 	if err != nil {
 		return nil, fmt.Errorf("Admins Not Found")
 	}
 
-	return Admins, nil
+	return admin, nil
 }
 
 func (context *AdminContextImpl) DeleteAdmin(ctx echo.Context, id int) error {
