@@ -15,7 +15,7 @@ func AdminDomainToAdminLoginResponse(user *domain.Admin) web.AdminLoginResponse 
 
 func AdminSchemaToAdminDomain(user *schema.Admin) *domain.Admin {
 	return &domain.Admin{
-		ID:       user.ID,
+		ID:       int(user.ID),
 		Name:     user.Name,
 		Email:    user.Email,
 		Password: user.Password,
