@@ -15,7 +15,7 @@ func UserDomainToUserLoginResponse(user *domain.User) web.UserLoginResponse {
 
 func UserSchemaToUserDomain(user *schema.User) *domain.User {
 	return &domain.User{
-		ID:       int(user.ID),
+		ID:       user.ID,
 		Name:     user.Name,
 		Email:    user.Email,
 		Password: user.Password,
@@ -24,7 +24,7 @@ func UserSchemaToUserDomain(user *schema.User) *domain.User {
 
 func UserDomaintoUserResponse(user *domain.User) web.UserReponse {
 	return web.UserReponse{
-		Id:       int(user.ID),
+		Id:       user.ID,
 		Name:     user.Name,
 		Email:    user.Email,
 		Password: user.Password,

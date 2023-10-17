@@ -1,7 +1,7 @@
 package domain
 
 type Admin struct {
-	ID       int
+	ID       uint
 	Name     string
 	Email    string
 	Password string

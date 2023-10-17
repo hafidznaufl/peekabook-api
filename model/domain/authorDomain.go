@@ -1,6 +1,6 @@
 package domain
 
 type Author struct {
-	ID        int
-	Name      string
+	ID   uint
+	Name string
 }
