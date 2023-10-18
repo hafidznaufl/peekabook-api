@@ -125,25 +125,6 @@ func (c *AdminControllerImpl) GetAdminsController(ctx echo.Context) error {
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", response))
 }
 
-func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
-	adminId := ctx.Param("id")
-	adminIdInt, err := strconv.Atoi(adminId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
-
-	err = c.AdminContext.DeleteAdmin(ctx, adminIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "Admin Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Admin Data Error"))
-	}
-
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", nil))
-}
-
 func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
 	adminId := ctx.Param("id")
 	adminIdInt, err := strconv.Atoi(adminId)
@@ -173,4 +154,23 @@ func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
 	response := res.AdminDomaintoAdminResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Admin", response))
+}
+
+func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
+	adminId := ctx.Param("id")
+	adminIdInt, err := strconv.Atoi(adminId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	err = c.AdminContext.DeleteAdmin(ctx, adminIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "Admin Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Admin Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", nil))
 }

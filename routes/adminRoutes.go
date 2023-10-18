@@ -25,8 +25,8 @@ func AdminRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	adminsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 
-	adminsGroup.PUT("/:id", adminController.UpdateAdminController)
 	adminsGroup.GET("/:id", adminController.GetAdminController)
 	adminsGroup.GET("", adminController.GetAdminsController)
+	adminsGroup.PUT("/:id", adminController.UpdateAdminController)
 	adminsGroup.DELETE("/:id", adminController.DeleteAdminController)
 }

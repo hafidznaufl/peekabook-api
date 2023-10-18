@@ -105,25 +105,6 @@ func (c *BookControllerImpl) GetBookByNameController(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Book Data By Name", response))
 }
 
-func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
-	bookId := ctx.Param("id")
-	bookIdInt, err := strconv.Atoi(bookId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
-
-	err = c.BookContext.DeleteBook(ctx, bookIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "Book Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Book Data Error"))
-	}
-
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Book Data", nil))
-}
-
 func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 	bookId := ctx.Param("id")
 	bookIdInt, err := strconv.Atoi(bookId)
@@ -153,4 +134,23 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 	response := res.BookDomaintoBookResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Book", response))
+}
+
+func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
+	bookId := ctx.Param("id")
+	bookIdInt, err := strconv.Atoi(bookId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	err = c.BookContext.DeleteBook(ctx, bookIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "Book Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Book Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Book Data", nil))
 }

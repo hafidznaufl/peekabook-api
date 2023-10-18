@@ -105,25 +105,6 @@ func (c *AuthorControllerImpl) GetAuthorByNameController(ctx echo.Context) error
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Author Data By Name", response))
 }
 
-func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
-	authorId := ctx.Param("id")
-	authorIdInt, err := strconv.Atoi(authorId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
-
-	err = c.AuthorContext.DeleteAuthor(ctx, authorIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "Author Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Author Data Error"))
-	}
-
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Author Data", nil))
-}
-
 func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 	authorId := ctx.Param("id")
 	authorIdInt, err := strconv.Atoi(authorId)
@@ -153,4 +134,23 @@ func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 	response := res.AuthorDomaintoAuthorResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Author", response))
+}
+
+func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
+	authorId := ctx.Param("id")
+	authorIdInt, err := strconv.Atoi(authorId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	err = c.AuthorContext.DeleteAuthor(ctx, authorIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "Author Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Author Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Author Data", nil))
 }

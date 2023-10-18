@@ -25,9 +25,9 @@ func UserRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	usersGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 
-	usersGroup.PUT("/:id", userController.UpdateUserController)
 	usersGroup.GET("/:id", userController.GetUserController)
 	usersGroup.GET("", userController.GetUsersController)
+	usersGroup.PUT("/:id", userController.UpdateUserController)
 	usersGroup.DELETE("/:id", userController.DeleteUserController)
 
 }
