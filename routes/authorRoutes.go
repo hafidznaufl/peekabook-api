@@ -22,10 +22,10 @@ func AuthorRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	authorsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 
-	authorsGroup.POST("", authorController.CreateAuthorController)
 	authorsGroup.GET("", authorController.GetAuthorsController)
 	authorsGroup.GET("/:id", authorController.GetAuthorController)
 	authorsGroup.GET("/name/:name", authorController.GetAuthorByNameController)
+	authorsGroup.POST("", authorController.CreateAuthorController)
 	authorsGroup.DELETE("/:id", authorController.DeleteAuthorController)
 	authorsGroup.PUT("/:id", authorController.UpdateAuthorController)
 

@@ -23,13 +23,13 @@ type AdminContext interface {
 
 type AdminContextImpl struct {
 	AdminRepository repository.AdminRepository
-	Validate       *validator.Validate
+	Validate        *validator.Validate
 }
 
 func NewAdminContext(AdminRepository repository.AdminRepository, validate *validator.Validate) *AdminContextImpl {
 	return &AdminContextImpl{
 		AdminRepository: AdminRepository,
-		Validate:       validate,
+		Validate:        validate,
 	}
 }
 

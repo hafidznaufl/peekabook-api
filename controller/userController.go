@@ -125,25 +125,6 @@ func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
 }
 
-func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
-	userId := ctx.Param("id")
-	userIdInt, err := strconv.Atoi(userId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
-
-	err = c.UserContext.DeleteUser(ctx, userIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "User Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete User Data Error"))
-	}
-
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", nil))
-}
-
 func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 	userId := ctx.Param("id")
 	userIdInt, err := strconv.Atoi(userId)
@@ -173,4 +154,23 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 	response := res.UserDomaintoUserResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
+}
+
+func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
+	userId := ctx.Param("id")
+	userIdInt, err := strconv.Atoi(userId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
+
+	err = c.UserContext.DeleteUser(ctx, userIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete User Data Error"))
+	}
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", nil))
 }

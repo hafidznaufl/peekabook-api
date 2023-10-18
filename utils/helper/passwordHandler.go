@@ -2,7 +2,7 @@ package helper
 
 import "golang.org/x/crypto/bcrypt"
 
-func HashPassword(password string) string  {
+func HashPassword(password string) string {
 	result, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	return string(result)
 }
