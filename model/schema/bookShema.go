@@ -12,7 +12,7 @@ type Book struct {
 	UpdatedAt time.Time      `gorm:"autoUpdateTime:milli"`
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 	Title     string         `json:"title"`
-	AuthorID  int            `gorm:"index"`
+	AuthorID  uint            `gorm:"index"`
 	Page      int            `json:"page"`
 	Years     int            `json:"years"`
 	Publisher string         `json:"publisher"`
