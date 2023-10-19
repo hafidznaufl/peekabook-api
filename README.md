@@ -1,6 +1,6 @@
 # PeekaBook API
 
-Aplikasi "Peekabook" adalah sistem manajemen peminjaman buku yang memungkinkan pengguna untuk meminjam buku, membuat permintaan buku, dan melihat informasi buku yang tersedia. API ini menyediakan layanan yang diperlukan untuk mengakses dan mengelola data dalam sistem ini.
+Aplikasi "Peekabook" adalah sistem manajemen peminjaman buku yang memungkinkan pengguna untuk meminjam buku, membuat pesan, dan melihat informasi buku yang tersedia. API ini menyediakan layanan yang diperlukan untuk mengakses dan mengelola data dalam sistem ini.
 
 ## Daftar Isi
 - [Instalasi](#instalasi)
@@ -15,9 +15,9 @@ Aplikasi "Peekabook" adalah sistem manajemen peminjaman buku yang memungkinkan p
 Untuk menjalankan API ini, Anda perlu mengikuti langkah-langkah instalasi berikut:
 
 1. Clone repositori ini ke komputer Anda.
-2. Instal semua dependensi yang diperlukan dengan menjalankan perintah `go get`.
+2. Instal semua dependensi yang diperlukan dengan menjalankan perintah `go mod tidy`.
 3. Konfigurasi koneksi database MySQL di file `.env` atau konfigurasi yang sesuai.
-4. Jalankan API dengan perintah `go run main.go`.
+4. Jalankan API dengan perintah `go run app.go`.
 5. API akan berjalan di `http://localhost:8000` secara default.
 
 ## Penggunaan API
@@ -55,11 +55,11 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 - DELETE `/borrow/:id`: Menghapus data peminjaman berdasarkan ID.
 
 ### Permintaan Buku (Book Requests):
-- GET `/requests`: Mendapatkan daftar semua permintaan buku.
-- GET `/requests/:id`: Mendapatkan data permintaan buku berdasarkan ID.
-- POST `/requests`: Membuat permintaan buku baru.
-- PUT `/requests/:id`: Mengupdate data permintaan buku berdasarkan ID.
-- DELETE `/requests/:id`: Menghapus data permintaan buku berdasarkan ID.
+- GET `/chat`: Mendapatkan daftar semua pesan.
+- GET `/chat/:id`: Mendapatkan data pesan berdasarkan ID.
+- POST `/chat`: Membuat pesan baru.
+- PUT `/chat/:id`: Mengupdate data pesan berdasarkan ID.
+- DELETE `/chat/:id`: Menghapus data pesan berdasarkan ID.
 
 ## Desain Database
 
