@@ -24,6 +24,7 @@ func main() {
 	routes.AuthorRoutes(app, DB, validate)
 	routes.BookRoutes(app, DB, validate)
 	routes.ChatRoutes(app, DB, validate)
+	routes.BorrowRoutes(app, DB, validate)
 
 	app.Pre(middleware.RemoveTrailingSlash())
 	app.Use(middleware.CORS())
