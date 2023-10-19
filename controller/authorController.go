@@ -49,7 +49,7 @@ func (c *AuthorControllerImpl) CreateAuthorController(ctx echo.Context) error {
 
 	response := res.AuthorDomaintoAuthorResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Author", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Author Data", response))
 }
 
 func (c *AuthorControllerImpl) GetAuthorController(ctx echo.Context) error {
@@ -80,12 +80,12 @@ func (c *AuthorControllerImpl) GetAuthorsController(ctx echo.Context) error {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Authors Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Authors Data Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Authors Data Error"))
 	}
 
 	response := res.ConvertAuthorResponse(result)
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Author Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Author Data", response))
 }
 
 func (c *AuthorControllerImpl) GetAuthorByNameController(ctx echo.Context) error {
@@ -133,7 +133,7 @@ func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 
 	response := res.AuthorDomaintoAuthorResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Author", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Author Data", response))
 }
 
 func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
@@ -152,5 +152,5 @@ func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Author Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Author Data", nil))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Author Data", nil))
 }

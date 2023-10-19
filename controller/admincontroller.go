@@ -117,12 +117,12 @@ func (c *AdminControllerImpl) GetAdminsController(ctx echo.Context) error {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admins Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Admins Data Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Admins Data Error"))
 	}
 
 	response := res.ConvertAdminResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get All Admin Data", response))
 }
 
 func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
@@ -153,7 +153,7 @@ func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
 
 	response := res.AdminDomaintoAdminResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Admin", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Admin Data", response))
 }
 
 func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
@@ -172,5 +172,5 @@ func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Admin Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", nil))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Admin Data", nil))
 }
