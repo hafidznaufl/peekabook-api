@@ -82,12 +82,9 @@ func (context *AuthorContextImpl) FindById(ctx echo.Context, id int) (*domain.Au
 
 func (context *AuthorContextImpl) FindByName(ctx echo.Context, name string) (*domain.Author, error) {
 	author, _ := context.AuthorRepository.FindByName(name)
-	if author != nil {
+	if author == nil {
 		return nil, fmt.Errorf("Author Not Found")
 	}
-
-	fmt.Println("Context")
-	fmt.Println(author)
 
 	return author, nil
 }

@@ -14,6 +14,7 @@ type UserRepository interface {
 	FindById(id int) (*domain.User, error)
 	FindByEmail(email string) (*domain.User, error)
 	FindAll() ([]domain.User, error)
+	FindByName(name string) (*domain.User, error)
 	Delete(id int) error
 }
 
@@ -77,6 +78,19 @@ func (repository *UserRepositoryImpl) FindAll() ([]domain.User, error) {
 	}
 
 	return user, nil
+}
+
+func (repository *UserRepositoryImpl) FindByName(name string) (*domain.User, error) {
+	user := domain.User{}
+
+	// Menggunakan query LIKE yang tidak case-sensitive
+	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&user)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &user, nil
 }
 
 func (repository *UserRepositoryImpl) Delete(id int) error {

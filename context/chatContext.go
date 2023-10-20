@@ -82,7 +82,7 @@ func (context *ChatContextImpl) FindById(ctx echo.Context, id int) (*domain.Chat
 
 func (context *ChatContextImpl) FindByName(ctx echo.Context, name string) (*domain.Chat, error) {
 	chatChat, _ := context.ChatRepository.FindByName(name)
-	if chatChat != nil {
+	if chatChat == nil {
 		return nil, fmt.Errorf("Chat Not Found")
 	}
 

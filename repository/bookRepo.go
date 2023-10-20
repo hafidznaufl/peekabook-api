@@ -73,7 +73,7 @@ func (repository *BookRepositoryImpl) FindByName(name string) (*domain.Book, err
 func (repository *BookRepositoryImpl) FindAll() ([]domain.Book, error) {
 	book := []domain.Book{}
 
-	result := repository.DB.Find(&book)
+	result := repository.DB.Raw("SELECT books.*, authors.name AS author_name FROM books JOIN authors ON books.author_id = authors.id;").Scan(&book)
 	if result.Error != nil {
 		return nil, result.Error
 	}

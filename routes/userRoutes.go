@@ -27,6 +27,7 @@ func UserRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	usersGroup.GET("/:id", userController.GetUserController)
 	usersGroup.GET("", userController.GetUsersController)
+	usersGroup.GET("/name/:name", userController.GetUserByNameController)
 	usersGroup.PUT("/:id", userController.UpdateUserController)
 	usersGroup.DELETE("/:id", userController.DeleteUserController)
 

@@ -14,6 +14,7 @@ type AdminRepository interface {
 	FindById(id int) (*domain.Admin, error)
 	FindByEmail(email string) (*domain.Admin, error)
 	FindAll() ([]domain.Admin, error)
+	FindByName(name string) (*domain.Admin, error)
 	Delete(id int) error
 }
 
@@ -77,6 +78,19 @@ func (repository *AdminRepositoryImpl) FindAll() ([]domain.Admin, error) {
 	}
 
 	return admin, nil
+}
+
+func (repository *AdminRepositoryImpl) FindByName(name string) (*domain.Admin, error) {
+	author := domain.Admin{}
+
+	// Menggunakan query LIKE yang tidak case-sensitive
+	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&author)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &author, nil
 }
 
 func (repository *AdminRepositoryImpl) Delete(id int) error {

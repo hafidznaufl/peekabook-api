@@ -18,6 +18,7 @@ type AdminContext interface {
 	UpdateAdmin(ctx echo.Context, request web.AdminUpdateRequest, id int) (*domain.Admin, error)
 	FindById(ctx echo.Context, id int) (*domain.Admin, error)
 	FindAll(ctx echo.Context) ([]domain.Admin, error)
+	FindByName(ctx echo.Context, name string) (*domain.Admin, error)
 	DeleteAdmin(ctx echo.Context, id int) error
 }
 
@@ -109,6 +110,15 @@ func (context *AdminContextImpl) FindById(ctx echo.Context, id int) (*domain.Adm
 	}
 
 	return existingAdmin, nil
+}
+
+func (context *AdminContextImpl) FindByName(ctx echo.Context, name string) (*domain.Admin, error) {
+	admin, _ := context.AdminRepository.FindByName(name)
+	if admin == nil {
+		return nil, fmt.Errorf("Admin Not Found")
+	}
+
+	return admin, nil
 }
 
 func (context *AdminContextImpl) FindAll(ctx echo.Context) ([]domain.Admin, error) {

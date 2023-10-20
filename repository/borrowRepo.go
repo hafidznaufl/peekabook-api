@@ -58,7 +58,7 @@ func (repository *BorrowRepositoryImpl) FindById(id int) (*domain.Borrow, error)
 }
 
 func (repository *BorrowRepositoryImpl) FindByName(name string) (*domain.Borrow, error) {
-	var borrow domain.Borrow
+	borrow := domain.Borrow{}
 
 	// Menggunakan query LIKE yang tidak case-sensitive
 	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&borrow)
