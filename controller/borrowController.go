@@ -49,7 +49,7 @@ func (c *BorrowControllerImpl) CreateBorrowController(ctx echo.Context) error {
 
 	response := res.BorrowDomaintoBorrowResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Borrow", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Borrow Data", response))
 }
 
 func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
@@ -80,12 +80,12 @@ func (c *BorrowControllerImpl) GetBorrowsController(ctx echo.Context) error {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrows Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Borrows Data Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Borrows Data Error"))
 	}
 
 	response := res.ConvertBorrowResponse(result)
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Borrow Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Borrows Data", response))
 }
 
 func (c *BorrowControllerImpl) GetBorrowByNameController(ctx echo.Context) error {
@@ -133,7 +133,7 @@ func (c *BorrowControllerImpl) UpdateBorrowController(ctx echo.Context) error {
 
 	response := res.BorrowDomaintoBorrowResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Borrow", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Borrow Data", response))
 }
 
 func (c *BorrowControllerImpl) DeleteBorrowController(ctx echo.Context) error {
@@ -152,5 +152,5 @@ func (c *BorrowControllerImpl) DeleteBorrowController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Borrow Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Borrow Data", nil))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Borrow Data", nil))
 }

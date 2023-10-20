@@ -82,12 +82,9 @@ func (context *BorrowContextImpl) FindById(ctx echo.Context, id int) (*domain.Bo
 
 func (context *BorrowContextImpl) FindByName(ctx echo.Context, name string) (*domain.Borrow, error) {
 	borrow, _ := context.BorrowRepository.FindByName(name)
-	if borrow != nil {
+	if borrow == nil {
 		return nil, fmt.Errorf("Borrow Not Found")
 	}
-
-	fmt.Println("Context")
-	fmt.Println(borrow)
 
 	return borrow, nil
 }

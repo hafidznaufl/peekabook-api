@@ -18,6 +18,7 @@ type UserContext interface {
 	UpdateUser(ctx echo.Context, request web.UserUpdateRequest, id int) (*domain.User, error)
 	FindById(ctx echo.Context, id int) (*domain.User, error)
 	FindAll(ctx echo.Context) ([]domain.User, error)
+	FindByName(ctx echo.Context, name string) (*domain.User, error)
 	DeleteUser(ctx echo.Context, id int) error
 }
 
@@ -118,6 +119,15 @@ func (context *UserContextImpl) FindAll(ctx echo.Context) ([]domain.User, error)
 	}
 
 	return users, nil
+}
+
+func (context *UserContextImpl) FindByName(ctx echo.Context, name string) (*domain.User, error) {
+	user, _ := context.UserRepository.FindByName(name)
+	if user == nil {
+		return nil, fmt.Errorf("User Not Found")
+	}
+
+	return user, nil
 }
 
 func (context *UserContextImpl) DeleteUser(ctx echo.Context, id int) error {

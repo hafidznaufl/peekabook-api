@@ -19,6 +19,7 @@ type UserController interface {
 	UpdateUserController(ctx echo.Context) error
 	GetUserController(ctx echo.Context) error
 	GetUsersController(ctx echo.Context) error
+	GetUserByNameController(ctx echo.Context) error
 	DeleteUserController(ctx echo.Context) error
 }
 
@@ -98,16 +99,16 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 
 	result, err := c.UserContext.FindById(ctx, userIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "User Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		if strings.Contains(err.Error(), "Users Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Users Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get User Data Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Users Data Error"))
 	}
 
 	response := res.UserDomaintoUserResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get All Users Data", response))
 }
 
 func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
@@ -123,6 +124,23 @@ func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 	response := res.ConvertUserResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
+}
+
+func (c *UserControllerImpl) GetUserByNameController(ctx echo.Context) error {
+	userName := ctx.Param("name")
+
+	result, err := c.UserContext.FindByName(ctx, userName)
+	if err != nil {
+		if strings.Contains(err.Error(), "User Not Found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get User Data By Name Error"))
+	}
+
+	response := res.UserDomaintoUserResponse(result)
+
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get User Data By Name", response))
 }
 
 func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
@@ -153,7 +171,7 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 
 	response := res.UserDomaintoUserResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User Data", response))
 }
 
 func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
@@ -172,5 +190,5 @@ func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete User Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", nil))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted User Data", nil))
 }

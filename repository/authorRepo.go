@@ -58,7 +58,7 @@ func (repository *AuthorRepositoryImpl) FindById(id int) (*domain.Author, error)
 }
 
 func (repository *AuthorRepositoryImpl) FindByName(name string) (*domain.Author, error) {
-	var author domain.Author
+	author := domain.Author{}
 
 	// Menggunakan query LIKE yang tidak case-sensitive
 	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&author)

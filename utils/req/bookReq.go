@@ -11,6 +11,7 @@ func BookDomaintoBookSchema(request domain.Book) *schema.Book {
 		Title:     request.Title,
 		AuthorID:  request.AuthorID,
 		Page:      request.Page,
+		Years:     request.Years,
 		Publisher: request.Publisher,
 		Type:      request.Type,
 		Quantity:  request.Quantity,

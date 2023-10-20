@@ -36,14 +36,16 @@ func ConvertBookResponse(books []domain.Book) []web.BookResponse {
 	var results []web.BookResponse
 	for _, book := range books {
 		bookResponse := web.BookResponse{
-			ID:        book.ID,
-			Title:     book.Title,
-			AuthorID:  book.AuthorID,
-			Page:      book.Page,
-			Publisher: book.Publisher,
-			Type:      book.Type,
-			Quantity:  book.Quantity,
-			Status:    book.Status,
+			ID:         book.ID,
+			Title:      book.Title,
+			AuthorID:   book.AuthorID,
+			Page:       book.Page,
+			Years:      book.Years,
+			Publisher:  book.Publisher,
+			Type:       book.Type,
+			Quantity:   book.Quantity,
+			Status:     book.Status,
+			AuthorName: book.AuthorName,
 		}
 		results = append(results, bookResponse)
 	}

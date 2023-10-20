@@ -82,12 +82,9 @@ func (context *BookContextImpl) FindById(ctx echo.Context, id int) (*domain.Book
 
 func (context *BookContextImpl) FindByName(ctx echo.Context, name string) (*domain.Book, error) {
 	book, _ := context.BookRepository.FindByName(name)
-	if book != nil {
+	if book == nil {
 		return nil, fmt.Errorf("Book Not Found")
 	}
-
-	fmt.Println("Context")
-	fmt.Println(book)
 
 	return book, nil
 }

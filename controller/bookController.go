@@ -49,7 +49,7 @@ func (c *BookControllerImpl) CreateBookController(ctx echo.Context) error {
 
 	response := res.BookDomaintoBookResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Book", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Book Data", response))
 }
 
 func (c *BookControllerImpl) GetBookController(ctx echo.Context) error {
@@ -80,12 +80,12 @@ func (c *BookControllerImpl) GetBooksController(ctx echo.Context) error {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Books Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Books Data Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Books Data Error"))
 	}
 
 	response := res.ConvertBookResponse(result)
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Book Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Book Data", response))
 }
 
 func (c *BookControllerImpl) GetBookByNameController(ctx echo.Context) error {
@@ -133,7 +133,7 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 
 	response := res.BookDomaintoBookResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Book", response))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Book Data", response))
 }
 
 func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
@@ -152,5 +152,5 @@ func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Book Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Book Data", nil))
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Book Data", nil))
 }
