@@ -16,7 +16,7 @@ type BookContext interface {
 	CreateBook(ctx echo.Context, request web.BookCreateRequest) (*domain.Book, error)
 	UpdateBook(ctx echo.Context, request web.BookUpdateRequest, id int) (*domain.Book, error)
 	FindById(ctx echo.Context, id int) (*domain.Book, error)
-	FindByName(ctx echo.Context, name string) (*domain.Book, error)
+	FindByTitle(ctx echo.Context, name string) (*domain.Book, error)
 	FindAll(ctx echo.Context) ([]domain.Book, error)
 	DeleteBook(ctx echo.Context, id int) error
 }
@@ -80,8 +80,8 @@ func (context *BookContextImpl) FindById(ctx echo.Context, id int) (*domain.Book
 	return book, nil
 }
 
-func (context *BookContextImpl) FindByName(ctx echo.Context, name string) (*domain.Book, error) {
-	book, _ := context.BookRepository.FindByName(name)
+func (context *BookContextImpl) FindByTitle(ctx echo.Context, title string) (*domain.Book, error) {
+	book, _ := context.BookRepository.FindByTitle(title)
 	if book == nil {
 		return nil, fmt.Errorf("Book Not Found")
 	}

@@ -12,7 +12,7 @@ type BookRepository interface {
 	Create(book *domain.Book) (*domain.Book, error)
 	Update(book *domain.Book, id int) (*domain.Book, error)
 	FindById(id int) (*domain.Book, error)
-	FindByName(name string) (*domain.Book, error)
+	FindByTitle(name string) (*domain.Book, error)
 	FindAll() ([]domain.Book, error)
 	Delete(id int) error
 }
@@ -47,9 +47,14 @@ func (repository *BookRepositoryImpl) Update(book *domain.Book, id int) (*domain
 }
 
 func (repository *BookRepositoryImpl) FindById(id int) (*domain.Book, error) {
-	book := domain.Book{}
+	var book domain.Book
 
-	result := repository.DB.First(&book, id)
+	if err := repository.DB.First(&book, id).Error; err != nil {
+		return nil, err
+	}
+
+	result := repository.DB.Raw("SELECT books.*, authors.name AS author_name FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = ?", id).Scan(&book)
+
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -57,11 +62,10 @@ func (repository *BookRepositoryImpl) FindById(id int) (*domain.Book, error) {
 	return &book, nil
 }
 
-func (repository *BookRepositoryImpl) FindByName(name string) (*domain.Book, error) {
+func (repository *BookRepositoryImpl) FindByTitle(title string) (*domain.Book, error) {
 	var book domain.Book
 
-	// Menggunakan query LIKE yang tidak case-sensitive
-	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&book)
+	result := repository.DB.Where("LOWER(title) LIKE LOWER(?)", "%"+title+"%").First(&book)
 
 	if result.Error != nil {
 		return nil, result.Error

@@ -24,7 +24,7 @@ func BookRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	booksGroup.GET("", bookController.GetBooksController)
 	booksGroup.GET("/:id", bookController.GetBookController)
-	booksGroup.GET("/name/:name", bookController.GetBookByNameController)
+	booksGroup.GET("/name/:name", bookController.GetBookByTitleController)
 	booksGroup.POST("", bookController.CreateBookController)
 	booksGroup.DELETE("/:id", bookController.DeleteBookController)
 	booksGroup.PUT("/:id", bookController.UpdateBookController)

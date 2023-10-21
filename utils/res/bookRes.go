@@ -21,10 +21,39 @@ func BookSchematoBookDomain(book *schema.Book) *domain.Book {
 
 func BookDomaintoBookResponse(book *domain.Book) web.BookResponse {
 	return web.BookResponse{
+		ID:         book.ID,
+		Title:      book.Title,
+		AuthorName: book.AuthorName,
+		Page:       book.Page,
+		Years:      book.Years,
+		Publisher:  book.Publisher,
+		Type:       book.Type,
+		Quantity:   book.Quantity,
+		Status:     book.Status,
+	}
+}
+
+func CreateBookDomaintoBookResponse(book *domain.Book) web.CreateBookResponse {
+	return web.CreateBookResponse{
 		ID:        book.ID,
 		Title:     book.Title,
 		AuthorID:  book.AuthorID,
 		Page:      book.Page,
+		Years:     book.Years,
+		Publisher: book.Publisher,
+		Type:      book.Type,
+		Quantity:  book.Quantity,
+		Status:    book.Status,
+	}
+}
+
+func UpdateBookDomaintoBookResponse(book *domain.Book) web.UpdateBookResponse {
+	return web.UpdateBookResponse{
+		ID:        book.ID,
+		Title:     book.Title,
+		AuthorID:  book.AuthorID,
+		Page:      book.Page,
+		Years:     book.Years,
 		Publisher: book.Publisher,
 		Type:      book.Type,
 		Quantity:  book.Quantity,
@@ -38,14 +67,13 @@ func ConvertBookResponse(books []domain.Book) []web.BookResponse {
 		bookResponse := web.BookResponse{
 			ID:         book.ID,
 			Title:      book.Title,
-			AuthorID:   book.AuthorID,
+			AuthorName: book.AuthorName,
 			Page:       book.Page,
 			Years:      book.Years,
 			Publisher:  book.Publisher,
 			Type:       book.Type,
 			Quantity:   book.Quantity,
 			Status:     book.Status,
-			AuthorName: book.AuthorName,
 		}
 		results = append(results, bookResponse)
 	}

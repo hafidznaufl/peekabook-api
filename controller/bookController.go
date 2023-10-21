@@ -18,7 +18,7 @@ type BookController interface {
 	UpdateBookController(ctx echo.Context) error
 	GetBookController(ctx echo.Context) error
 	GetBooksController(ctx echo.Context) error
-	GetBookByNameController(ctx echo.Context) error
+	GetBookByTitleController(ctx echo.Context) error
 	DeleteBookController(ctx echo.Context) error
 }
 
@@ -47,7 +47,7 @@ func (c *BookControllerImpl) CreateBookController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Book Error"))
 	}
 
-	response := res.BookDomaintoBookResponse(result)
+	response := res.CreateBookDomaintoBookResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Book Data", response))
 }
@@ -88,10 +88,10 @@ func (c *BookControllerImpl) GetBooksController(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Book Data", response))
 }
 
-func (c *BookControllerImpl) GetBookByNameController(ctx echo.Context) error {
+func (c *BookControllerImpl) GetBookByTitleController(ctx echo.Context) error {
 	bookName := ctx.Param("name")
 
-	result, err := c.BookContext.FindByName(ctx, bookName)
+	result, err := c.BookContext.FindByTitle(ctx, bookName)
 	if err != nil {
 		if strings.Contains(err.Error(), "Book Not Found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
@@ -131,7 +131,7 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Book Error"))
 	}
 
-	response := res.BookDomaintoBookResponse(result)
+	response := res.UpdateBookDomaintoBookResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Book Data", response))
 }
