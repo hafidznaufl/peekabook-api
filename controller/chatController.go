@@ -154,4 +154,3 @@ func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Chat Data", nil))
 }
-
