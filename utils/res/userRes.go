@@ -22,8 +22,8 @@ func UserSchemaToUserDomain(user *schema.User) *domain.User {
 	}
 }
 
-func UserDomaintoUserResponse(user *domain.User) web.UserReponse {
-	return web.UserReponse{
+func UserDomaintoUserResponse(user *domain.User) web.UserResponse {
+	return web.UserResponse{
 		Id:       user.ID,
 		Name:     user.Name,
 		Email:    user.Email,
@@ -31,10 +31,10 @@ func UserDomaintoUserResponse(user *domain.User) web.UserReponse {
 	}
 }
 
-func ConvertUserResponse(users []domain.User) []web.UserReponse {
-	var results []web.UserReponse
+func ConvertUserResponse(users []domain.User) []web.UserResponse {
+	var results []web.UserResponse
 	for _, user := range users {
-		userResponse := web.UserReponse{
+		userResponse := web.UserResponse{
 			Id:       user.ID,
 			Name:     user.Name,
 			Email:    user.Email,
