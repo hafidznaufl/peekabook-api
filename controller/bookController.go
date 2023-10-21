@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"peekabook/context"
 	"peekabook/model/web"
@@ -89,20 +88,20 @@ func (c *BookControllerImpl) GetBooksController(ctx echo.Context) error {
 }
 
 func (c *BookControllerImpl) GetBookByTitleController(ctx echo.Context) error {
-	bookName := ctx.Param("name")
+	bookTitle := ctx.Param("name")
 
-	result, err := c.BookContext.FindByTitle(ctx, bookName)
+	result, err := c.BookContext.FindByTitle(ctx, bookTitle)
 	if err != nil {
 		if strings.Contains(err.Error(), "Book Not Found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Book Data By Name Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Book Data By Title Error"))
 	}
 
 	response := res.BookDomaintoBookResponse(result)
-	fmt.Println(response)
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Book Data By Name", response))
+
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Book Data By Title", response))
 }
 
 func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
