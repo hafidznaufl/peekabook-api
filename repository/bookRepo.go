@@ -65,8 +65,7 @@ func (repository *BookRepositoryImpl) FindById(id int) (*domain.Book, error) {
 func (repository *BookRepositoryImpl) FindByTitle(title string) (*domain.Book, error) {
 	var book domain.Book
 
-	result := repository.DB.Where("LOWER(title) LIKE LOWER(?)", "%"+title+"%").First(&book)
-
+	result := repository.DB.Raw("SELECT books.*, authors.name AS author_name FROM books JOIN authors ON books.author_id = authors.id WHERE LOWER(books.title) LIKE LOWER(?)", "%"+title+"%").Scan(&book)
 	if result.Error != nil {
 		return nil, result.Error
 	}
