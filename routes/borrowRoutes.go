@@ -18,7 +18,7 @@ func BorrowRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	borrowContext := context.NewBorrowContext(borrowRepository, validate)
 	borrowController := controller.NewBorrowController(borrowContext)
 
-	borrowsGroup := e.Group("borrows")
+	borrowsGroup := e.Group("borrow")
 
 	borrowsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 

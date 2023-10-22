@@ -41,6 +41,17 @@ func (context *BorrowContextImpl) CreateBorrow(ctx echo.Context, request web.Bor
 
 	borrow := req.BorrowCreateRequestToBorrowDomain(request)
 
+	// Step 0: Check if the book is available for borrowing using the new repository function
+	bookQuantity, err := context.BorrowRepository.GetBorrowedBookQuantity(int(borrow.BookID))
+	if err != nil {
+		return nil, fmt.Errorf("Error when checking book availability: %s", err.Error())
+	}
+
+	if bookQuantity <= 0 {
+		return nil, fmt.Errorf("Unavailable")
+	}
+
+	// Continue with the borrow creation process
 	result, err := context.BorrowRepository.Create(borrow)
 	if err != nil {
 		return nil, fmt.Errorf("Error when creating Borrow: %s", err.Error())
@@ -48,6 +59,7 @@ func (context *BorrowContextImpl) CreateBorrow(ctx echo.Context, request web.Bor
 
 	return result, nil
 }
+
 
 func (context *BorrowContextImpl) UpdateBorrow(ctx echo.Context, request web.BorrowUpdateRequest, id int) (*domain.Borrow, error) {
 	err := context.Validate.Struct(request)
@@ -94,6 +106,8 @@ func (context *BorrowContextImpl) FindAll(ctx echo.Context) ([]domain.Borrow, er
 	if err != nil {
 		return nil, fmt.Errorf("Borrows Not Found")
 	}
+
+	fmt.Println(borrow)
 
 	return borrow, nil
 }

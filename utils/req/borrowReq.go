@@ -8,7 +8,6 @@ import (
 
 func BorrowDomaintoBorrowSchema(request domain.Borrow) *schema.Borrow {
 	return &schema.Borrow{
-		BookID: request.BookID,
 		UserID: request.UserID,
 		Date:   request.Date,
 		Return: request.Return,
@@ -18,7 +17,6 @@ func BorrowDomaintoBorrowSchema(request domain.Borrow) *schema.Borrow {
 
 func BorrowCreateRequestToBorrowDomain(request web.BorrowCreateRequest) *domain.Borrow {
 	return &domain.Borrow{
-		BookID: request.BookID,
 		UserID: request.UserID,
 		Date:   request.Date,
 		Return: request.Return,
@@ -28,7 +26,6 @@ func BorrowCreateRequestToBorrowDomain(request web.BorrowCreateRequest) *domain.
 
 func BorrowUpdateRequestToBorrowDomain(request web.BorrowUpdateRequest) *domain.Borrow {
 	return &domain.Borrow{
-		BookID: request.BookID,
 		UserID: request.UserID,
 		Date:   request.Date,
 		Return: request.Return,

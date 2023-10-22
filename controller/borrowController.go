@@ -44,6 +44,11 @@ func (c *BorrowControllerImpl) CreateBorrowController(ctx echo.Context) error {
 
 		}
 
+		if strings.Contains(err.Error(), "Unavailable") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("The Book is Unavailable for Borrowing"))
+
+		}
+
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Borrow Error"))
 	}
 

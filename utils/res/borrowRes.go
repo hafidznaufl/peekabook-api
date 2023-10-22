@@ -8,6 +8,7 @@ import (
 
 func BorrowSchematoBorrowDomain(borrow *schema.Borrow) *domain.Borrow {
 	return &domain.Borrow{
+		ID:     borrow.ID,
 		BookID: borrow.BookID,
 		UserID: borrow.UserID,
 		Date:   borrow.Date,
@@ -18,6 +19,7 @@ func BorrowSchematoBorrowDomain(borrow *schema.Borrow) *domain.Borrow {
 
 func BorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.BorrowResponse {
 	return web.BorrowResponse{
+		ID:     borrow.ID,
 		BookID: borrow.BookID,
 		UserID: borrow.UserID,
 		Date:   borrow.Date,
@@ -30,6 +32,7 @@ func ConvertBorrowResponse(borrows []domain.Borrow) []web.BorrowResponse {
 	var results []web.BorrowResponse
 	for _, borrow := range borrows {
 		borrowResponse := web.BorrowResponse{
+			ID:     borrow.ID,
 			BookID: borrow.BookID,
 			UserID: borrow.UserID,
 			Date:   borrow.Date,
