@@ -18,7 +18,7 @@ func BorrowRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	borrowContext := context.NewBorrowContext(borrowRepository, validate)
 	borrowController := controller.NewBorrowController(borrowContext)
 
-	borrowsGroup := e.Group("borrows")
+	borrowsGroup := e.Group("borrow")
 
 	borrowsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
 
@@ -26,6 +26,7 @@ func BorrowRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	borrowsGroup.GET("/:id", borrowController.GetBorrowController)
 	borrowsGroup.GET("/name/:name", borrowController.GetBorrowByNameController)
 	borrowsGroup.POST("", borrowController.CreateBorrowController)
+	borrowsGroup.POST("/:id", borrowController.ReturnBorrowController)
 	borrowsGroup.DELETE("/:id", borrowController.DeleteBorrowController)
 	borrowsGroup.PUT("/:id", borrowController.UpdateBorrowController)
 

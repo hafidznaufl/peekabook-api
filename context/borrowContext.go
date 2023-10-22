@@ -14,6 +14,7 @@ import (
 
 type BorrowContext interface {
 	CreateBorrow(ctx echo.Context, request web.BorrowCreateRequest) (*domain.Borrow, error)
+	ReturnBorrow(ctx echo.Context, id int) (*domain.Borrow, error)
 	UpdateBorrow(ctx echo.Context, request web.BorrowUpdateRequest, id int) (*domain.Borrow, error)
 	FindById(ctx echo.Context, id int) (*domain.Borrow, error)
 	FindByName(ctx echo.Context, name string) (*domain.Borrow, error)
@@ -41,9 +42,30 @@ func (context *BorrowContextImpl) CreateBorrow(ctx echo.Context, request web.Bor
 
 	borrow := req.BorrowCreateRequestToBorrowDomain(request)
 
+	// Step 0: Check if the book is available for borrowing using the new repository function
+	bookQuantity, err := context.BorrowRepository.GetBorrowedBookQuantity(int(borrow.BookID))
+	if err != nil {
+		return nil, fmt.Errorf("Error when checking book availability: %s", err.Error())
+	}
+
+	if bookQuantity <= 0 {
+		return nil, fmt.Errorf("Unavailable")
+	}
+
+	// Continue with the borrow creation process
 	result, err := context.BorrowRepository.Create(borrow)
 	if err != nil {
 		return nil, fmt.Errorf("Error when creating Borrow: %s", err.Error())
+	}
+
+	return result, nil
+}
+
+func (context *BorrowContextImpl) ReturnBorrow(ctx echo.Context, id int) (*domain.Borrow, error) {
+	// Step 1: Use the repository function to return the borrowed book
+	result, err := context.BorrowRepository.ReturnBorrow(id)
+	if err != nil {
+		return nil, err
 	}
 
 	return result, nil

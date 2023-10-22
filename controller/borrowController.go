@@ -15,6 +15,7 @@ import (
 
 type BorrowController interface {
 	CreateBorrowController(ctx echo.Context) error
+	ReturnBorrowController(ctx echo.Context) error
 	UpdateBorrowController(ctx echo.Context) error
 	GetBorrowController(ctx echo.Context) error
 	GetBorrowsController(ctx echo.Context) error
@@ -44,12 +45,37 @@ func (c *BorrowControllerImpl) CreateBorrowController(ctx echo.Context) error {
 
 		}
 
+		if strings.Contains(err.Error(), "Unavailable") {
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("The Book is Unavailable for Borrowing"))
+
+		}
+
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Borrow Error"))
 	}
 
 	response := res.BorrowDomaintoBorrowResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Borrow Data", response))
+}
+
+func (controller *BorrowControllerImpl) ReturnBorrowController(ctx echo.Context) error {
+	// Mendapatkan borrowID dari URL
+	borrowId := ctx.Param("id")
+	borrowIdInt, err := strconv.Atoi(borrowId)
+
+	// Panggil fungsi context untuk mengembalikan buku menggunakan borrowID dari URL
+	result, err := controller.BorrowContext.ReturnBorrow(ctx, borrowIdInt)
+	if err != nil {
+		// Mengatasi kesalahan yang mungkin terjadi selama proses pengembalian
+		if err.Error() == "Unavailable" {
+			// Mengembalikan respons "Unavailable" jika buku tidak dapat dikembalikan
+			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("The book is unavailable for returning"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error returning the book"))
+	}
+
+	// Mengembalikan respons sukses jika pengembalian buku berhasil
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Book returned successfully", result))
 }
 
 func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
