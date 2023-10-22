@@ -51,7 +51,7 @@ func (c *BorrowControllerImpl) CreateBorrowController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Borrow Error"))
 	}
 
-	response := res.BorrowDomaintoBorrowResponse(result)
+	response := res.CreateBorrowDomaintoBorrowResponse(result)
 
 	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Borrow Data", response))
 }
