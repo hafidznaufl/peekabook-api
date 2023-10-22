@@ -12,6 +12,7 @@ import (
 
 type BorrowRepository interface {
 	Create(borrow *domain.Borrow) (*domain.Borrow, error)
+	ReturnBorrow(borrowID int) (*domain.Borrow, error)
 	Update(borrow *domain.Borrow, id int) (*domain.Borrow, error)
 	GetBorrowedBookQuantity(borrowID int) (int, error)
 	FindById(id int) (*domain.Borrow, error)
@@ -90,7 +91,7 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	return results, nil
 }
 
-func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID uint) (*domain.Borrow, error) {
+func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borrow, error) {
 	// Start a database transaction
 	tx := repository.DB.Begin()
 	defer func() {
@@ -128,7 +129,7 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID uint) (*domain.Bor
 	}
 
 	// Step 4: Set the borrow status to "Returned" and update the return date
-	result = tx.Model(&borrowDb).Update("status", "Returned")
+	result = tx.Model(&schema.Borrow{}).Where("ID = ?", borrowID).Update("status", "Returned")
 	if result.Error != nil {
 		tx.Rollback() // Rollback the transaction on error
 		return nil, result.Error
@@ -138,22 +139,20 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID uint) (*domain.Bor
 	tx.Commit()
 
 	// Convert the result back to domain model
-	results := res.BorrowSchematoBorrowDomain(&borrowDb)
-
-	return results, nil
+	return res.BorrowSchematoBorrowDomain(&borrowDb), nil
 }
 
 func (repository *BorrowRepositoryImpl) GetBorrowedBookQuantity(borrowID int) (int, error) {
-    var bookQuantity int
+	var bookQuantity int
 
-    // Buat permintaan SQL mentah untuk mengambil quantity buku
-    result := repository.DB.Raw("SELECT books.quantity FROM borrows INNER JOIN books ON borrows.book_id = books.id WHERE borrows.id = ?", borrowID).Scan(&bookQuantity)
+	// Buat permintaan SQL mentah untuk mengambil quantity buku
+	result := repository.DB.Raw("SELECT books.quantity FROM borrows INNER JOIN books ON borrows.book_id = books.id WHERE borrows.id = ?", borrowID).Scan(&bookQuantity)
 
-    if result.Error != nil {
-        return 0, result.Error
-    }
+	if result.Error != nil {
+		return 0, result.Error
+	}
 
-    return bookQuantity, nil
+	return bookQuantity, nil
 }
 
 func (repository *BorrowRepositoryImpl) Update(borrow *domain.Borrow, id int) (*domain.Borrow, error) {

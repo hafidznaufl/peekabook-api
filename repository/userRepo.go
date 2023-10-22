@@ -22,8 +22,8 @@ type UserRepositoryImpl struct {
 	DB *gorm.DB
 }
 
-func NewUserRepository(DB *gorm.DB) UserRepository {
-	return &UserRepositoryImpl{DB: DB}
+func NewUserRepository(db *gorm.DB) UserRepository {
+	return &UserRepositoryImpl{DB: db}
 }
 
 func (repository *UserRepositoryImpl) Create(user *domain.User) (*domain.User, error) {

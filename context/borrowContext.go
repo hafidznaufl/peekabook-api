@@ -14,6 +14,7 @@ import (
 
 type BorrowContext interface {
 	CreateBorrow(ctx echo.Context, request web.BorrowCreateRequest) (*domain.Borrow, error)
+	ReturnBorrow(ctx echo.Context, id int) (*domain.Borrow, error)
 	UpdateBorrow(ctx echo.Context, request web.BorrowUpdateRequest, id int) (*domain.Borrow, error)
 	FindById(ctx echo.Context, id int) (*domain.Borrow, error)
 	FindByName(ctx echo.Context, name string) (*domain.Borrow, error)
@@ -60,6 +61,15 @@ func (context *BorrowContextImpl) CreateBorrow(ctx echo.Context, request web.Bor
 	return result, nil
 }
 
+func (context *BorrowContextImpl) ReturnBorrow(ctx echo.Context, id int) (*domain.Borrow, error) {
+	// Step 1: Use the repository function to return the borrowed book
+	result, err := context.BorrowRepository.ReturnBorrow(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
 
 func (context *BorrowContextImpl) UpdateBorrow(ctx echo.Context, request web.BorrowUpdateRequest, id int) (*domain.Borrow, error) {
 	err := context.Validate.Struct(request)
@@ -106,8 +116,6 @@ func (context *BorrowContextImpl) FindAll(ctx echo.Context) ([]domain.Borrow, er
 	if err != nil {
 		return nil, fmt.Errorf("Borrows Not Found")
 	}
-
-	fmt.Println(borrow)
 
 	return borrow, nil
 }

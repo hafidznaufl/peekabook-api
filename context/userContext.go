@@ -27,10 +27,10 @@ type UserContextImpl struct {
 	Validate       *validator.Validate
 }
 
-func NewUserContext(userRepository repository.UserRepository, validate *validator.Validate) *UserContextImpl {
+func NewUserContext(repo repository.UserRepository, validasi *validator.Validate) *UserContextImpl {
 	return &UserContextImpl{
-		UserRepository: userRepository,
-		Validate:       validate,
+		UserRepository: repo,
+		Validate:       validasi,
 	}
 }
 
