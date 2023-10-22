@@ -3,10 +3,12 @@ package domain
 import "time"
 
 type Borrow struct {
-	ID     uint
-	BookID uint
-	UserID uint
-	Date   time.Time
-	Return time.Time
-	Status string
+	ID        uint
+	BookID    uint
+	BookTitle string
+	UserID    uint
+	UserName  string
+	Date      time.Time
+	Return    time.Time
+	Status    string
 }

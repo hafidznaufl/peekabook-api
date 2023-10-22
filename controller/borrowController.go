@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"peekabook/context"
 	"peekabook/model/web"
@@ -19,7 +18,6 @@ type BorrowController interface {
 	UpdateBorrowController(ctx echo.Context) error
 	GetBorrowController(ctx echo.Context) error
 	GetBorrowsController(ctx echo.Context) error
-	GetBorrowByNameController(ctx echo.Context) error
 	DeleteBorrowController(ctx echo.Context) error
 }
 
@@ -112,23 +110,6 @@ func (c *BorrowControllerImpl) GetBorrowsController(ctx echo.Context) error {
 	response := res.ConvertBorrowResponse(result)
 
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Borrows Data", response))
-}
-
-func (c *BorrowControllerImpl) GetBorrowByNameController(ctx echo.Context) error {
-	borrowName := ctx.Param("name")
-
-	result, err := c.BorrowContext.FindByName(ctx, borrowName)
-	if err != nil {
-		if strings.Contains(err.Error(), "Borrow Not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrow Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Borrow Data By Name Error"))
-	}
-
-	response := res.BorrowDomaintoBorrowResponse(result)
-	fmt.Println(response)
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Borrow Data By Name", response))
 }
 
 func (c *BorrowControllerImpl) UpdateBorrowController(ctx echo.Context) error {

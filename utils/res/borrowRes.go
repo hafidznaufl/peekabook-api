@@ -19,12 +19,12 @@ func BorrowSchematoBorrowDomain(borrow *schema.Borrow) *domain.Borrow {
 
 func BorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.BorrowResponse {
 	return web.BorrowResponse{
-		ID:     borrow.ID,
-		BookID: borrow.BookID,
-		UserID: borrow.UserID,
-		Date:   borrow.Date,
-		Return: borrow.Return,
-		Status: borrow.Status,
+		ID:        borrow.ID,
+		BookTitle: borrow.BookTitle,
+		UserName:  borrow.UserName,
+		Date:      borrow.Date,
+		Return:    borrow.Return,
+		Status:    borrow.Status,
 	}
 }
 
@@ -32,12 +32,12 @@ func ConvertBorrowResponse(borrows []domain.Borrow) []web.BorrowResponse {
 	var results []web.BorrowResponse
 	for _, borrow := range borrows {
 		borrowResponse := web.BorrowResponse{
-			ID:     borrow.ID,
-			BookID: borrow.BookID,
-			UserID: borrow.UserID,
-			Date:   borrow.Date,
-			Return: borrow.Return,
-			Status: borrow.Status,
+			ID:        borrow.ID,
+			BookTitle: borrow.BookTitle,
+			UserName:  borrow.UserName,
+			Date:      borrow.Date,
+			Return:    borrow.Return,
+			Status:    borrow.Status,
 		}
 		results = append(results, borrowResponse)
 	}

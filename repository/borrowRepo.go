@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"peekabook/model/domain"
 	"peekabook/model/schema"
 	"peekabook/utils/req"
@@ -16,7 +17,6 @@ type BorrowRepository interface {
 	Update(borrow *domain.Borrow, id int) (*domain.Borrow, error)
 	GetBorrowedBookQuantity(borrowID int) (int, error)
 	FindById(id int) (*domain.Borrow, error)
-	FindByName(name string) (*domain.Borrow, error)
 	FindAll() ([]domain.Borrow, error)
 	Delete(id int) error
 }
@@ -37,7 +37,7 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	tx := repository.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
-			tx.Rollback() // Rollback the transaction on panic
+			tx.Rollback()
 		}
 	}()
 
@@ -45,11 +45,11 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	var book schema.Book
 	result := tx.First(&book, borrow.BookID)
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 	if book.Quantity <= 0 {
-		tx.Rollback() // Rollback the transaction if book quantity is 0
+		tx.Rollback()
 		return nil, result.Error
 	}
 
@@ -60,7 +60,7 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	borrowDb.Return = returnDate
 	result = tx.Create(&borrowDb)
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 
@@ -68,7 +68,7 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	quantityToDecrease := 1 // Assuming that one book is borrowed
 	result = tx.Model(&schema.Book{}).Where("ID = ?", borrow.BookID).Update("quantity", gorm.Expr("quantity - ?", quantityToDecrease))
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 
@@ -77,15 +77,13 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 	if book.Quantity <= 0 {
 		result = tx.Model(&book).Update("status", "Unavailable")
 		if result.Error != nil {
-			tx.Rollback() // Rollback the transaction on error
+			tx.Rollback()
 			return nil, result.Error
 		}
 	}
 
-	// Commit the transaction
 	tx.Commit()
 
-	// Convert the result back to domain model
 	results := res.BorrowSchematoBorrowDomain(borrowDb)
 
 	return results, nil
@@ -96,7 +94,7 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 	tx := repository.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
-			tx.Rollback() // Rollback the transaction on panic
+			tx.Rollback()
 		}
 	}()
 
@@ -104,16 +102,16 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 	var borrowDb schema.Borrow
 	result := tx.First(&borrowDb, borrowID)
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 
 	// Step 2: Increase the book quantity
 	bookID := borrowDb.BookID
-	quantityToIncrease := 1 // Assuming one book is returned
+	quantityToIncrease := 1
 	result = tx.Model(&schema.Book{}).Where("ID = ?", bookID).Update("quantity", gorm.Expr("quantity + ?", quantityToIncrease))
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 
@@ -135,18 +133,17 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 		return nil, result.Error
 	}
 
-	// Commit the transaction
 	tx.Commit()
 
-	// Convert the result back to domain model
 	return res.BorrowSchematoBorrowDomain(&borrowDb), nil
 }
 
 func (repository *BorrowRepositoryImpl) GetBorrowedBookQuantity(borrowID int) (int, error) {
 	var bookQuantity int
 
-	// Buat permintaan SQL mentah untuk mengambil quantity buku
-	result := repository.DB.Raw("SELECT books.quantity FROM borrows INNER JOIN books ON borrows.book_id = books.id WHERE borrows.id = ?", borrowID).Scan(&bookQuantity)
+	query := `SELECT books.quantity FROM borrows INNER JOIN books ON borrows.book_id = books.id WHERE borrows.id = ?`
+
+	result := repository.DB.Raw(query, borrowID).Scan(&bookQuantity)
 
 	if result.Error != nil {
 		return 0, result.Error
@@ -167,36 +164,43 @@ func (repository *BorrowRepositoryImpl) Update(borrow *domain.Borrow, id int) (*
 func (repository *BorrowRepositoryImpl) FindById(id int) (*domain.Borrow, error) {
 	borrow := domain.Borrow{}
 
-	result := repository.DB.First(&borrow, id)
+	query := `
+        SELECT borrows.*, books.title AS book_title, users.name AS user_name
+        FROM borrows
+        LEFT JOIN books ON borrows.book_id = books.id
+        LEFT JOIN users ON borrows.user_id = users.id
+        WHERE borrows.id = ?
+    `
+
+	// Eksekusi pernyataan SQL dengan db.Raw
+	result := repository.DB.Raw(query, id).Scan(&borrow)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return &borrow, nil
-}
-
-func (repository *BorrowRepositoryImpl) FindByName(name string) (*domain.Borrow, error) {
-	borrow := domain.Borrow{}
-
-	// Menggunakan query LIKE yang tidak case-sensitive
-	result := repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&borrow)
-
-	if result.Error != nil {
-		return nil, result.Error
-	}
+	fmt.Println(borrow)
 
 	return &borrow, nil
 }
 
 func (repository *BorrowRepositoryImpl) FindAll() ([]domain.Borrow, error) {
-	borrow := []domain.Borrow{}
+	var borrows []domain.Borrow
 
-	result := repository.DB.Find(&borrow)
+	// Menuliskan pernyataan SQL untuk melakukan JOIN
+	query := `
+        SELECT borrows.*, books.title AS book_title, users.name AS user_name
+        FROM borrows
+        LEFT JOIN books ON borrows.book_id = books.id
+        LEFT JOIN users ON borrows.user_id = users.id
+    `
+
+	// Eksekusi pernyataan SQL dengan db.Raw
+	result := repository.DB.Raw(query).Scan(&borrows)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
-	return borrow, nil
+	return borrows, nil
 }
 
 func (repository *BorrowRepositoryImpl) Delete(id int) error {
