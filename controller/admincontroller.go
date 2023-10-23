@@ -40,12 +40,12 @@ func (c *AdminControllerImpl) RegisterAdminController(ctx echo.Context) error {
 
 	result, err := c.AdminContext.CreateAdmin(ctx, adminCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
 
-		if strings.Contains(err.Error(), "Email Already Exist") {
+		if strings.Contains(err.Error(), "email already exist") {
 			return ctx.JSON(http.StatusConflict, helper.ErrorResponse("Email Already Exist"))
 
 		}
@@ -67,11 +67,11 @@ func (c *AdminControllerImpl) LoginAdminController(ctx echo.Context) error {
 
 	response, err := c.AdminContext.LoginAdmin(ctx, adminLoginRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Invalid Email or Password") {
+		if strings.Contains(err.Error(), "invalid email or password") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Email or Password"))
 		}
 
@@ -99,7 +99,7 @@ func (c *AdminControllerImpl) GetAdminController(ctx echo.Context) error {
 
 	result, err := c.AdminContext.FindById(ctx, adminIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Admin Not Found") {
+		if strings.Contains(err.Error(), "admin not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
 		}
 
@@ -114,7 +114,7 @@ func (c *AdminControllerImpl) GetAdminController(ctx echo.Context) error {
 func (c *AdminControllerImpl) GetAdminsController(ctx echo.Context) error {
 	result, err := c.AdminContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Admins Not Found") {
+		if strings.Contains(err.Error(), "admins not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admins Not Found"))
 		}
 
@@ -131,7 +131,7 @@ func (c *AdminControllerImpl) GetAdminByNameController(ctx echo.Context) error {
 
 	result, err := c.AdminContext.FindByName(ctx, adminName)
 	if err != nil {
-		if strings.Contains(err.Error(), "Admin Not Found") {
+		if strings.Contains(err.Error(), "admin not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
 		}
 
@@ -158,11 +158,11 @@ func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
 
 	result, err := c.AdminContext.UpdateAdmin(ctx, adminUpdateRequest, adminIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Admin Not Found") {
+		if strings.Contains(err.Error(), "admin not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
 		}
 
@@ -183,7 +183,7 @@ func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
 
 	err = c.AdminContext.DeleteAdmin(ctx, adminIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Admin Not Found") {
+		if strings.Contains(err.Error(), "admin not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Admin Not Found"))
 		}
 

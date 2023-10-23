@@ -38,12 +38,12 @@ func (c *BorrowControllerImpl) CreateBorrowController(ctx echo.Context) error {
 
 	result, err := c.BorrowContext.CreateBorrow(ctx, borrowCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
 
-		if strings.Contains(err.Error(), "Unavailable") {
+		if strings.Contains(err.Error(), "unavailable") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("The Book is Unavailable for Borrowing"))
 
 		}
@@ -60,12 +60,15 @@ func (controller *BorrowControllerImpl) ReturnBorrowController(ctx echo.Context)
 	// Mendapatkan borrowID dari URL
 	borrowId := ctx.Param("id")
 	borrowIdInt, err := strconv.Atoi(borrowId)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
+	}
 
 	// Panggil fungsi context untuk mengembalikan buku menggunakan borrowID dari URL
 	result, err := controller.BorrowContext.ReturnBorrow(ctx, borrowIdInt)
 	if err != nil {
 		// Mengatasi kesalahan yang mungkin terjadi selama proses pengembalian
-		if err.Error() == "Unavailable" {
+		if err.Error() == "unavailable" {
 			// Mengembalikan respons "Unavailable" jika buku tidak dapat dikembalikan
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("The book is unavailable for returning"))
 		}
@@ -85,7 +88,7 @@ func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
 
 	result, err := c.BorrowContext.FindById(ctx, borrowIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Borrow Not Found") {
+		if strings.Contains(err.Error(), "borrow not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrow Not Found"))
 		}
 
@@ -100,7 +103,7 @@ func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
 func (c *BorrowControllerImpl) GetBorrowsController(ctx echo.Context) error {
 	result, err := c.BorrowContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Borrows Not Found") {
+		if strings.Contains(err.Error(), "borrows not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrows Not Found"))
 		}
 
@@ -127,11 +130,11 @@ func (c *BorrowControllerImpl) UpdateBorrowController(ctx echo.Context) error {
 
 	result, err := c.BorrowContext.UpdateBorrow(ctx, borrowUpdateRequest, borrowIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Borrow Not Found") {
+		if strings.Contains(err.Error(), "borrow not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrow Not Found"))
 		}
 
@@ -152,7 +155,7 @@ func (c *BorrowControllerImpl) DeleteBorrowController(ctx echo.Context) error {
 
 	err = c.BorrowContext.DeleteBorrow(ctx, borrowIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Borrow Not Found") {
+		if strings.Contains(err.Error(), "borrow not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrow Not Found"))
 		}
 

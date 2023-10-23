@@ -43,7 +43,7 @@ func (context *AuthorContextImpl) CreateAuthor(ctx echo.Context, request web.Aut
 
 	result, err := context.AuthorRepository.Create(author)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating Author: %s", err.Error())
+		return nil, fmt.Errorf("error when creating Author: %s", err.Error())
 	}
 
 	return result, nil
@@ -57,14 +57,14 @@ func (context *AuthorContextImpl) UpdateAuthor(ctx echo.Context, request web.Aut
 
 	existingAuthor, _ := context.AuthorRepository.FindById(id)
 	if existingAuthor == nil {
-		return nil, fmt.Errorf("Author Not Found")
+		return nil, fmt.Errorf("author not found")
 	}
 
 	author := req.AuthorUpdateRequestToAuthorDomain(request)
 
 	result, err := context.AuthorRepository.Update(author, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating Author: %s", err.Error())
+		return nil, fmt.Errorf("error when updating Author: %s", err.Error())
 	}
 
 	return result, nil
@@ -74,7 +74,7 @@ func (context *AuthorContextImpl) FindById(ctx echo.Context, id int) (*domain.Au
 
 	author, _ := context.AuthorRepository.FindById(id)
 	if author == nil {
-		return nil, fmt.Errorf("Author Not Found")
+		return nil, fmt.Errorf("author not found")
 	}
 
 	return author, nil
@@ -83,7 +83,7 @@ func (context *AuthorContextImpl) FindById(ctx echo.Context, id int) (*domain.Au
 func (context *AuthorContextImpl) FindByName(ctx echo.Context, name string) (*domain.Author, error) {
 	author, _ := context.AuthorRepository.FindByName(name)
 	if author == nil {
-		return nil, fmt.Errorf("Author Not Found")
+		return nil, fmt.Errorf("author not found")
 	}
 
 	return author, nil
@@ -92,7 +92,7 @@ func (context *AuthorContextImpl) FindByName(ctx echo.Context, name string) (*do
 func (context *AuthorContextImpl) FindAll(ctx echo.Context) ([]domain.Author, error) {
 	author, err := context.AuthorRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Authors Not Found")
+		return nil, fmt.Errorf("authors not found")
 	}
 
 	return author, nil
@@ -102,12 +102,12 @@ func (context *AuthorContextImpl) DeleteAuthor(ctx echo.Context, id int) error {
 
 	author, _ := context.AuthorRepository.FindById(id)
 	if author == nil {
-		return fmt.Errorf("Author Not Found")
+		return fmt.Errorf("author not found")
 	}
 
 	err := context.AuthorRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting Author: %s", err)
+		return fmt.Errorf("error when deleting author: %s", err)
 	}
 
 	return nil

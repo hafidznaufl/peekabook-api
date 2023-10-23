@@ -39,7 +39,7 @@ func (c *ChatControllerImpl) CreateChatController(ctx echo.Context) error {
 
 	result, err := c.ChatContext.CreateChat(ctx, chatCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
@@ -61,7 +61,7 @@ func (c *ChatControllerImpl) GetChatController(ctx echo.Context) error {
 
 	result, err := c.ChatContext.FindById(ctx, chatIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Chat Not Found") {
+		if strings.Contains(err.Error(), "chat not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
 		}
 
@@ -76,7 +76,7 @@ func (c *ChatControllerImpl) GetChatController(ctx echo.Context) error {
 func (c *ChatControllerImpl) GetChatsController(ctx echo.Context) error {
 	result, err := c.ChatContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Chats Not Found") {
+		if strings.Contains(err.Error(), "chats not Found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chats Not Found"))
 		}
 
@@ -93,7 +93,7 @@ func (c *ChatControllerImpl) GetChatByNameController(ctx echo.Context) error {
 
 	result, err := c.ChatContext.FindByName(ctx, chatName)
 	if err != nil {
-		if strings.Contains(err.Error(), "Chat Not Found") {
+		if strings.Contains(err.Error(), "chat not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
 		}
 
@@ -120,11 +120,11 @@ func (c *ChatControllerImpl) UpdateChatController(ctx echo.Context) error {
 
 	result, err := c.ChatContext.UpdateChat(ctx, chatUpdateRequest, chatIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Chat Not Found") {
+		if strings.Contains(err.Error(), "chat not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
 		}
 
@@ -145,7 +145,7 @@ func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
 
 	err = c.ChatContext.DeleteChat(ctx, chatIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Chat Not Found") {
+		if strings.Contains(err.Error(), "chat not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
 		}
 

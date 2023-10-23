@@ -38,7 +38,7 @@ func (c *BookControllerImpl) CreateBookController(ctx echo.Context) error {
 
 	result, err := c.BookContext.CreateBook(ctx, bookCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
@@ -60,7 +60,7 @@ func (c *BookControllerImpl) GetBookController(ctx echo.Context) error {
 
 	result, err := c.BookContext.FindById(ctx, bookIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Book Not Found") {
+		if strings.Contains(err.Error(), "book not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 
@@ -75,7 +75,7 @@ func (c *BookControllerImpl) GetBookController(ctx echo.Context) error {
 func (c *BookControllerImpl) GetBooksController(ctx echo.Context) error {
 	result, err := c.BookContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Books Not Found") {
+		if strings.Contains(err.Error(), "books not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Books Not Found"))
 		}
 
@@ -92,7 +92,7 @@ func (c *BookControllerImpl) GetBookByTitleController(ctx echo.Context) error {
 
 	result, err := c.BookContext.FindByTitle(ctx, bookTitle)
 	if err != nil {
-		if strings.Contains(err.Error(), "Book Not Found") {
+		if strings.Contains(err.Error(), "book not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 
@@ -119,11 +119,11 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 
 	result, err := c.BookContext.UpdateBook(ctx, bookUpdateRequest, bookIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Book Not Found") {
+		if strings.Contains(err.Error(), "book not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 
@@ -144,7 +144,7 @@ func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
 
 	err = c.BookContext.DeleteBook(ctx, bookIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Book Not Found") {
+		if strings.Contains(err.Error(), "book not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 

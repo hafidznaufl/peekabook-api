@@ -43,7 +43,7 @@ func (context *AdminContextImpl) CreateAdmin(ctx echo.Context, request web.Admin
 
 	existingAdmin, _ := context.AdminRepository.FindByEmail(request.Email)
 	if existingAdmin != nil {
-		return nil, fmt.Errorf("Email Already Exist")
+		return nil, fmt.Errorf("email already Exist")
 	}
 
 	admin := req.AdminCreateRequestToAdminDomain(request)
@@ -52,7 +52,7 @@ func (context *AdminContextImpl) CreateAdmin(ctx echo.Context, request web.Admin
 
 	result, err := context.AdminRepository.Create(admin)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating Admin: %s", err.Error())
+		return nil, fmt.Errorf("error when creating Admin: %s", err.Error())
 	}
 
 	return result, nil
@@ -66,14 +66,14 @@ func (context *AdminContextImpl) LoginAdmin(ctx echo.Context, request web.AdminL
 
 	existingAdmin, err := context.AdminRepository.FindByEmail(request.Email)
 	if err != nil {
-		return nil, fmt.Errorf("Invalid Email or Password")
+		return nil, fmt.Errorf("invalid email or password")
 	}
 
 	admin := req.AdminLoginRequestToAdminDomain(request)
 
 	err = helper.ComparePassword(existingAdmin.Password, admin.Password)
 	if err != nil {
-		return nil, fmt.Errorf("Invalid Email or Password")
+		return nil, fmt.Errorf("invalid email or password")
 	}
 
 	return existingAdmin, nil
@@ -88,7 +88,7 @@ func (context *AdminContextImpl) UpdateAdmin(ctx echo.Context, request web.Admin
 
 	existingAdmin, _ := context.AdminRepository.FindById(id)
 	if existingAdmin == nil {
-		return nil, fmt.Errorf("Admin Not Found")
+		return nil, fmt.Errorf("admin not found")
 	}
 
 	admin := req.AdminUpdateRequestToAdminDomain(request)
@@ -96,7 +96,7 @@ func (context *AdminContextImpl) UpdateAdmin(ctx echo.Context, request web.Admin
 
 	result, err := context.AdminRepository.Update(admin, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating Admin: %s", err.Error())
+		return nil, fmt.Errorf("error when updating admin: %s", err.Error())
 	}
 
 	return result, nil
@@ -106,7 +106,7 @@ func (context *AdminContextImpl) FindById(ctx echo.Context, id int) (*domain.Adm
 
 	existingAdmin, _ := context.AdminRepository.FindById(id)
 	if existingAdmin == nil {
-		return nil, fmt.Errorf("Admin Not Found")
+		return nil, fmt.Errorf("admin not found")
 	}
 
 	return existingAdmin, nil
@@ -115,7 +115,7 @@ func (context *AdminContextImpl) FindById(ctx echo.Context, id int) (*domain.Adm
 func (context *AdminContextImpl) FindByName(ctx echo.Context, name string) (*domain.Admin, error) {
 	admin, _ := context.AdminRepository.FindByName(name)
 	if admin == nil {
-		return nil, fmt.Errorf("Admin Not Found")
+		return nil, fmt.Errorf("admin not found")
 	}
 
 	return admin, nil
@@ -124,7 +124,7 @@ func (context *AdminContextImpl) FindByName(ctx echo.Context, name string) (*dom
 func (context *AdminContextImpl) FindAll(ctx echo.Context) ([]domain.Admin, error) {
 	admin, err := context.AdminRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Admins Not Found")
+		return nil, fmt.Errorf("admins not found")
 	}
 
 	return admin, nil
@@ -134,12 +134,12 @@ func (context *AdminContextImpl) DeleteAdmin(ctx echo.Context, id int) error {
 
 	existingAdmin, _ := context.AdminRepository.FindById(id)
 	if existingAdmin == nil {
-		return fmt.Errorf("Admin Not Found")
+		return fmt.Errorf("admin not found")
 	}
 
 	err := context.AdminRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting Admin: %s", err)
+		return fmt.Errorf("error when deleting admin: %s", err)
 	}
 
 	return nil

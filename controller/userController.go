@@ -40,12 +40,12 @@ func (c *UserControllerImpl) RegisterUserController(ctx echo.Context) error {
 
 	result, err := c.UserContext.CreateUser(ctx, userCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
 
-		if strings.Contains(err.Error(), "Email Already Exist") {
+		if strings.Contains(err.Error(), "email already exist") {
 			return ctx.JSON(http.StatusConflict, helper.ErrorResponse("Email Already Exist"))
 
 		}
@@ -67,11 +67,11 @@ func (c *UserControllerImpl) LoginUserController(ctx echo.Context) error {
 
 	response, err := c.UserContext.LoginUser(ctx, userLoginRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Invalid Email or Password") {
+		if strings.Contains(err.Error(), "invalid email or password") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Email or Password"))
 		}
 
@@ -99,7 +99,7 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 
 	result, err := c.UserContext.FindById(ctx, userIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Users Not Found") {
+		if strings.Contains(err.Error(), "users not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Users Not Found"))
 		}
 
@@ -114,7 +114,7 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 	result, err := c.UserContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Users Not Found") {
+		if strings.Contains(err.Error(), "users not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Users Not Found"))
 		}
 
@@ -131,7 +131,7 @@ func (c *UserControllerImpl) GetUserByNameController(ctx echo.Context) error {
 
 	result, err := c.UserContext.FindByName(ctx, userName)
 	if err != nil {
-		if strings.Contains(err.Error(), "User Not Found") {
+		if strings.Contains(err.Error(), "user not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
 		}
 
@@ -158,11 +158,11 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 
 	result, err := c.UserContext.UpdateUser(ctx, userUpdateRequest, userIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "User Not Found") {
+		if strings.Contains(err.Error(), "user not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
 		}
 
@@ -183,7 +183,7 @@ func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
 
 	err = c.UserContext.DeleteUser(ctx, userIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "User Not Found") {
+		if strings.Contains(err.Error(), "user not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("User Not Found"))
 		}
 
