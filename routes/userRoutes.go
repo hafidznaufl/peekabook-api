@@ -20,7 +20,7 @@ func UserRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	usersGroup := e.Group("users")
 
-	usersGroup.POST("/users", userController.RegisterUserController)
+	usersGroup.POST("", userController.RegisterUserController)
 	usersGroup.POST("/login", userController.LoginUserController)
 
 	usersGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))

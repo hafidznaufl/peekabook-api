@@ -15,7 +15,7 @@ type BorrowRepository interface {
 	Create(borrow *domain.Borrow) (*domain.Borrow, error)
 	ReturnBorrow(borrowID int) (*domain.Borrow, error)
 	Update(borrow *domain.Borrow, id int) (*domain.Borrow, error)
-	GetBorrowedBookQuantity(borrowID int) (int, error)
+	GetBookQuantity(bookID int) (int, error)
 	FindById(id int) (*domain.Borrow, error)
 	FindAll() ([]domain.Borrow, error)
 	Delete(id int) error
@@ -138,12 +138,12 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 	return res.BorrowSchematoBorrowDomain(&borrowDb), nil
 }
 
-func (repository *BorrowRepositoryImpl) GetBorrowedBookQuantity(borrowID int) (int, error) {
+func (repository *BorrowRepositoryImpl) GetBookQuantity(bookID int) (int, error) {
 	var bookQuantity int
 
-	query := `SELECT books.quantity FROM borrows INNER JOIN books ON borrows.book_id = books.id WHERE borrows.id = ?`
+	query := "SELECT quantity FROM books WHERE id = ?"
 
-	result := repository.DB.Raw(query, borrowID).Scan(&bookQuantity)
+	result := repository.DB.Raw(query, bookID).Scan(&bookQuantity)
 
 	if result.Error != nil {
 		return 0, result.Error
