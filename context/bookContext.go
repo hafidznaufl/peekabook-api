@@ -43,7 +43,7 @@ func (context *BookContextImpl) CreateBook(ctx echo.Context, request web.BookCre
 
 	result, err := context.BookRepository.Create(book)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating Book: %s", err.Error())
+		return nil, fmt.Errorf("error when creating Book: %s", err.Error())
 	}
 
 	return result, nil
@@ -57,14 +57,14 @@ func (context *BookContextImpl) UpdateBook(ctx echo.Context, request web.BookUpd
 
 	existingBook, _ := context.BookRepository.FindById(id)
 	if existingBook == nil {
-		return nil, fmt.Errorf("Book Not Found")
+		return nil, fmt.Errorf("book not found")
 	}
 
 	book := req.BookUpdateRequestToBookDomain(request)
 
 	result, err := context.BookRepository.Update(book, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating Book: %s", err.Error())
+		return nil, fmt.Errorf("error when updating book: %s", err.Error())
 	}
 
 	return result, nil
@@ -74,7 +74,7 @@ func (context *BookContextImpl) FindById(ctx echo.Context, id int) (*domain.Book
 
 	book, _ := context.BookRepository.FindById(id)
 	if book == nil {
-		return nil, fmt.Errorf("Book Not Found")
+		return nil, fmt.Errorf("book not found")
 	}
 
 	return book, nil
@@ -83,7 +83,7 @@ func (context *BookContextImpl) FindById(ctx echo.Context, id int) (*domain.Book
 func (context *BookContextImpl) FindByTitle(ctx echo.Context, title string) (*domain.Book, error) {
 	book, _ := context.BookRepository.FindByTitle(title)
 	if book == nil {
-		return nil, fmt.Errorf("Book Not Found")
+		return nil, fmt.Errorf("book not found")
 	}
 
 	return book, nil
@@ -92,7 +92,7 @@ func (context *BookContextImpl) FindByTitle(ctx echo.Context, title string) (*do
 func (context *BookContextImpl) FindAll(ctx echo.Context) ([]domain.Book, error) {
 	book, err := context.BookRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Books Not Found")
+		return nil, fmt.Errorf("books not found")
 	}
 
 	return book, nil
@@ -102,12 +102,12 @@ func (context *BookContextImpl) DeleteBook(ctx echo.Context, id int) error {
 
 	book, _ := context.BookRepository.FindById(id)
 	if book == nil {
-		return fmt.Errorf("Book Not Found")
+		return fmt.Errorf("book not found")
 	}
 
 	err := context.BookRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting Book: %s", err)
+		return fmt.Errorf("error when deleting book: %s", err)
 	}
 
 	return nil

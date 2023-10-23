@@ -43,7 +43,7 @@ func (context *UserContextImpl) CreateUser(ctx echo.Context, request web.UserCre
 
 	existingUser, _ := context.UserRepository.FindByEmail(request.Email)
 	if existingUser != nil {
-		return nil, fmt.Errorf("Email Already Exist")
+		return nil, fmt.Errorf("email already exist")
 	}
 
 	user := req.UserCreateRequestToUserDomain(request)
@@ -52,7 +52,7 @@ func (context *UserContextImpl) CreateUser(ctx echo.Context, request web.UserCre
 
 	result, err := context.UserRepository.Create(user)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating user: %s", err.Error())
+		return nil, fmt.Errorf("error when creating user: %s", err.Error())
 	}
 
 	return result, nil
@@ -66,14 +66,14 @@ func (context *UserContextImpl) LoginUser(ctx echo.Context, request web.UserLogi
 
 	existingUser, err := context.UserRepository.FindByEmail(request.Email)
 	if err != nil {
-		return nil, fmt.Errorf("Invalid Email or Password")
+		return nil, fmt.Errorf("invalid email or password")
 	}
 
 	user := req.UserLoginRequestToUserDomain(request)
 
 	err = helper.ComparePassword(existingUser.Password, user.Password)
 	if err != nil {
-		return nil, fmt.Errorf("Invalid Email or Password")
+		return nil, fmt.Errorf("invalid email or password")
 	}
 
 	return existingUser, nil
@@ -88,7 +88,7 @@ func (context *UserContextImpl) UpdateUser(ctx echo.Context, request web.UserUpd
 
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
-		return nil, fmt.Errorf("User Not Found")
+		return nil, fmt.Errorf("user not found")
 	}
 
 	user := req.UserUpdateRequestToUserDomain(request)
@@ -96,7 +96,7 @@ func (context *UserContextImpl) UpdateUser(ctx echo.Context, request web.UserUpd
 
 	result, err := context.UserRepository.Update(user, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating user: %s", err.Error())
+		return nil, fmt.Errorf("error when updating user: %s", err.Error())
 	}
 
 	return result, nil
@@ -106,7 +106,7 @@ func (context *UserContextImpl) FindById(ctx echo.Context, id int) (*domain.User
 
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
-		return nil, fmt.Errorf("User Not Found")
+		return nil, fmt.Errorf("user not found")
 	}
 
 	return existingUser, nil
@@ -115,7 +115,7 @@ func (context *UserContextImpl) FindById(ctx echo.Context, id int) (*domain.User
 func (context *UserContextImpl) FindAll(ctx echo.Context) ([]domain.User, error) {
 	users, err := context.UserRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Users Not Found")
+		return nil, fmt.Errorf("users not found")
 	}
 
 	return users, nil
@@ -124,7 +124,7 @@ func (context *UserContextImpl) FindAll(ctx echo.Context) ([]domain.User, error)
 func (context *UserContextImpl) FindByName(ctx echo.Context, name string) (*domain.User, error) {
 	user, _ := context.UserRepository.FindByName(name)
 	if user == nil {
-		return nil, fmt.Errorf("User Not Found")
+		return nil, fmt.Errorf("user not found")
 	}
 
 	return user, nil
@@ -134,12 +134,12 @@ func (context *UserContextImpl) DeleteUser(ctx echo.Context, id int) error {
 
 	existingUser, _ := context.UserRepository.FindById(id)
 	if existingUser == nil {
-		return fmt.Errorf("User Not Found")
+		return fmt.Errorf("user not found")
 	}
 
 	err := context.UserRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting user: %s", err)
+		return fmt.Errorf("error when deleting user: %s", err)
 	}
 
 	return nil

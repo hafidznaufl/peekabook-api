@@ -39,7 +39,7 @@ func (c *AuthorControllerImpl) CreateAuthorController(ctx echo.Context) error {
 
 	result, err := c.AuthorContext.CreateAuthor(ctx, authorCreateRequest)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 
 		}
@@ -61,7 +61,7 @@ func (c *AuthorControllerImpl) GetAuthorController(ctx echo.Context) error {
 
 	result, err := c.AuthorContext.FindById(ctx, authorIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Author Not Found") {
+		if strings.Contains(err.Error(), "author not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
 		}
 
@@ -76,7 +76,7 @@ func (c *AuthorControllerImpl) GetAuthorController(ctx echo.Context) error {
 func (c *AuthorControllerImpl) GetAuthorsController(ctx echo.Context) error {
 	result, err := c.AuthorContext.FindAll(ctx)
 	if err != nil {
-		if strings.Contains(err.Error(), "Authors Not Found") {
+		if strings.Contains(err.Error(), "authors not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Authors Not Found"))
 		}
 
@@ -93,7 +93,7 @@ func (c *AuthorControllerImpl) GetAuthorByNameController(ctx echo.Context) error
 
 	result, err := c.AuthorContext.FindByName(ctx, authorName)
 	if err != nil {
-		if strings.Contains(err.Error(), "Author Not Found") {
+		if strings.Contains(err.Error(), "author not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
 		}
 
@@ -120,11 +120,11 @@ func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 
 	result, err := c.AuthorContext.UpdateAuthor(ctx, authorUpdateRequest, authorIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Validation failed") {
+		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
 		}
 
-		if strings.Contains(err.Error(), "Author Not Found") {
+		if strings.Contains(err.Error(), "author not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
 		}
 
@@ -145,7 +145,7 @@ func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
 
 	err = c.AuthorContext.DeleteAuthor(ctx, authorIdInt)
 	if err != nil {
-		if strings.Contains(err.Error(), "Author Not Found") {
+		if strings.Contains(err.Error(), "author not found") {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Author Not Found"))
 		}
 
