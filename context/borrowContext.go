@@ -42,19 +42,19 @@ func (context *BorrowContextImpl) CreateBorrow(ctx echo.Context, request web.Bor
 	borrow := req.BorrowCreateRequestToBorrowDomain(request)
 
 	// Step 0: Check if the book is available for borrowing using the new repository function
-	bookQuantity, err := context.BorrowRepository.GetBorrowedBookQuantity(int(borrow.BookID))
+	bookQuantity, err := context.BorrowRepository.GetBookQuantity(int(borrow.BookID))
 	if err != nil {
-		return nil, fmt.Errorf("Error when checking book availability: %s", err.Error())
+		return nil, fmt.Errorf("error when checking book availability: %s", err.Error())
 	}
 
 	if bookQuantity <= 0 {
-		return nil, fmt.Errorf("Unavailable")
+		return nil, fmt.Errorf("unavailable")
 	}
 
 	// Continue with the borrow creation process
 	result, err := context.BorrowRepository.Create(borrow)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating Borrow: %s", err.Error())
+		return nil, fmt.Errorf("error when creating Borrow: %s", err.Error())
 	}
 
 	return result, nil
@@ -78,14 +78,14 @@ func (context *BorrowContextImpl) UpdateBorrow(ctx echo.Context, request web.Bor
 
 	existingBorrow, _ := context.BorrowRepository.FindById(id)
 	if existingBorrow == nil {
-		return nil, fmt.Errorf("Borrow Not Found")
+		return nil, fmt.Errorf("borrow not found")
 	}
 
 	borrow := req.BorrowUpdateRequestToBorrowDomain(request)
 
 	result, err := context.BorrowRepository.Update(borrow, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating Borrow: %s", err.Error())
+		return nil, fmt.Errorf("error when updating borrow: %s", err.Error())
 	}
 
 	return result, nil
@@ -95,7 +95,7 @@ func (context *BorrowContextImpl) FindById(ctx echo.Context, id int) (*domain.Bo
 
 	borrow, _ := context.BorrowRepository.FindById(id)
 	if borrow == nil {
-		return nil, fmt.Errorf("Borrow Not Found")
+		return nil, fmt.Errorf("borrow not found")
 	}
 
 	fmt.Println(borrow)
@@ -106,7 +106,7 @@ func (context *BorrowContextImpl) FindById(ctx echo.Context, id int) (*domain.Bo
 func (context *BorrowContextImpl) FindAll(ctx echo.Context) ([]domain.Borrow, error) {
 	borrow, err := context.BorrowRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Borrows Not Found")
+		return nil, fmt.Errorf("borrows not found")
 	}
 
 	return borrow, nil
@@ -116,12 +116,12 @@ func (context *BorrowContextImpl) DeleteBorrow(ctx echo.Context, id int) error {
 
 	borrow, _ := context.BorrowRepository.FindById(id)
 	if borrow == nil {
-		return fmt.Errorf("Borrow Not Found")
+		return fmt.Errorf("borrow not found")
 	}
 
 	err := context.BorrowRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting Borrow: %s", err)
+		return fmt.Errorf("error when deleting borrow: %s", err)
 	}
 
 	return nil

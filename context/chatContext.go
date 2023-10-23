@@ -43,7 +43,7 @@ func (context *ChatContextImpl) CreateChat(ctx echo.Context, request web.ChatCre
 
 	result, err := context.ChatRepository.Create(chatChat)
 	if err != nil {
-		return nil, fmt.Errorf("Error when creating Chat: %s", err.Error())
+		return nil, fmt.Errorf("error when creating Chat: %s", err.Error())
 	}
 
 	return result, nil
@@ -57,14 +57,14 @@ func (context *ChatContextImpl) UpdateChat(ctx echo.Context, request web.ChatUpd
 
 	existingChat, _ := context.ChatRepository.FindById(id)
 	if existingChat == nil {
-		return nil, fmt.Errorf("Chat Not Found")
+		return nil, fmt.Errorf("chat not found")
 	}
 
 	chatChat := req.ChatUpdateRequestToChatDomain(request)
 
 	result, err := context.ChatRepository.Update(chatChat, id)
 	if err != nil {
-		return nil, fmt.Errorf("Error when updating Chat: %s", err.Error())
+		return nil, fmt.Errorf("error when updating chat: %s", err.Error())
 	}
 
 	return result, nil
@@ -74,7 +74,7 @@ func (context *ChatContextImpl) FindById(ctx echo.Context, id int) (*domain.Chat
 
 	chatChat, _ := context.ChatRepository.FindById(id)
 	if chatChat == nil {
-		return nil, fmt.Errorf("Chat Not Found")
+		return nil, fmt.Errorf("chat not found")
 	}
 
 	return chatChat, nil
@@ -83,7 +83,7 @@ func (context *ChatContextImpl) FindById(ctx echo.Context, id int) (*domain.Chat
 func (context *ChatContextImpl) FindByName(ctx echo.Context, name string) (*domain.Chat, error) {
 	chatChat, _ := context.ChatRepository.FindByName(name)
 	if chatChat == nil {
-		return nil, fmt.Errorf("Chat Not Found")
+		return nil, fmt.Errorf("chat not found")
 	}
 
 	fmt.Println("Context")
@@ -95,7 +95,7 @@ func (context *ChatContextImpl) FindByName(ctx echo.Context, name string) (*doma
 func (context *ChatContextImpl) FindAll(ctx echo.Context) ([]domain.Chat, error) {
 	chatChat, err := context.ChatRepository.FindAll()
 	if err != nil {
-		return nil, fmt.Errorf("Chats Not Found")
+		return nil, fmt.Errorf("chats not found")
 	}
 
 	return chatChat, nil
@@ -105,12 +105,12 @@ func (context *ChatContextImpl) DeleteChat(ctx echo.Context, id int) error {
 
 	chatChat, _ := context.ChatRepository.FindById(id)
 	if chatChat == nil {
-		return fmt.Errorf("Chat Not Found")
+		return fmt.Errorf("chat not found")
 	}
 
 	err := context.ChatRepository.Delete(id)
 	if err != nil {
-		return fmt.Errorf("Error when deleting Chat: %s", err)
+		return fmt.Errorf("error when deleting chat: %s", err)
 	}
 
 	return nil
