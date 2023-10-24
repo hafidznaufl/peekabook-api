@@ -46,6 +46,8 @@ func (context *BookContextImpl) CreateBook(ctx echo.Context, request web.BookCre
 		return nil, fmt.Errorf("error when creating Book: %s", err.Error())
 	}
 
+	fmt.Println(result)
+
 	return result, nil
 }
 
