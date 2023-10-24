@@ -4,6 +4,7 @@ import (
 	"peekabook/model/domain"
 	"peekabook/utils/req"
 	"peekabook/utils/res"
+	"time"
 
 	"gorm.io/gorm"
 )
@@ -26,10 +27,34 @@ func NewBookRepository(DB *gorm.DB) BookRepository {
 }
 
 func (repository *BookRepositoryImpl) Create(book *domain.Book) (*domain.Book, error) {
+	// Membuat transaksi database
+	tx := repository.DB.Begin()
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
 	bookDb := req.BookDomaintoBookSchema(*book)
-	result := repository.DB.Create(&bookDb)
+	result := tx.Create(&bookDb)
 	if result.Error != nil {
+		tx.Rollback() // Gulung transaksi jika terjadi kesalahan
 		return nil, result.Error
+	}
+
+	// Membuat entri di tabel StoreBook
+	storeBook := domain.Store{
+		BookID: bookDb.ID,  // Gunakan ID buku yang baru ditambahkan
+		Date:   time.Now(), // Atur tanggal saat ini
+	}
+	storeBookDb := req.StoreBookDomaintoStoreBookSchema(storeBook)
+	storeBookResult := tx.Create(&storeBookDb)
+	if storeBookResult.Error != nil {
+		tx.Rollback() // Gulung transaksi jika terjadi kesalahan
+		return nil, storeBookResult.Error
+	}
+
+	// Commit transaksi jika semuanya berhasil
+	if err := tx.Commit().Error; err != nil {
+		return nil, err
 	}
 
 	results := res.BookSchematoBookDomain(bookDb)
