@@ -12,6 +12,7 @@ func BookSchematoBookDomain(book *schema.Book) *domain.Book {
 		Title:     book.Title,
 		AuthorID:  book.AuthorID,
 		Page:      book.Page,
+		Years:     book.Years,
 		Publisher: book.Publisher,
 		Type:      book.Type,
 		Quantity:  book.Quantity,
