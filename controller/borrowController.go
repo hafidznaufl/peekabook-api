@@ -75,8 +75,10 @@ func (controller *BorrowControllerImpl) ReturnBorrowController(ctx echo.Context)
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error returning the book"))
 	}
 
+	response := res.ReturnBorrowDomaintoBorrowResponse(result)
+
 	// Mengembalikan respons sukses jika pengembalian buku berhasil
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Book returned successfully", result))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Book returned successfully", response))
 }
 
 func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
