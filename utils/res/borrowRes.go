@@ -39,6 +39,17 @@ func CreateBorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.CreateBorrowR
 	}
 }
 
+func ReturnBorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.CreateBorrowResponse {
+	return web.CreateBorrowResponse{
+		ID:     borrow.ID,
+		BookID: borrow.BookID,
+		UserID: borrow.UserID,
+		Date:   borrow.Date,
+		Return: borrow.Return,
+		Status: borrow.Status,
+	}
+}
+
 func ConvertBorrowResponse(borrows []domain.Borrow) []web.BorrowResponse {
 	var results []web.BorrowResponse
 	for _, borrow := range borrows {
