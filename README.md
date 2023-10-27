@@ -29,6 +29,7 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 ### Pengguna (Users):
 - GET `/users`: Mendapatkan daftar semua pengguna.
 - GET `/users/:id`: Mendapatkan data pengguna berdasarkan ID.
+- GET `/users/name/:name`: Mendapatkan data pengguna berdasarkan nama.
 - POST `/users`: Membuat pengguna baru.
 - PUT `/users/:id`: Mengupdate data pengguna berdasarkan ID.
 - DELETE `/users/:id`: Menghapus pengguna berdasarkan ID.
@@ -36,6 +37,7 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 ### Admin:
 - GET `/admin`: Mendapatkan daftar semua admin.
 - GET `/admin/:id`: Mendapatkan data admin berdasarkan ID.
+- GET `/admin/name/:name`: Mendapatkan data admin berdasarkan nama.
 - POST `/admin`: Membuat admin baru.
 - PUT `/admin/:id`: Mengupdate data admin berdasarkan ID.
 - DELETE `/admin/:id`: Menghapus admin berdasarkan ID.
@@ -43,6 +45,7 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 ### Buku (Books):
 - GET `/books`: Mendapatkan daftar semua buku.
 - GET `/books/:id`: Mendapatkan data buku berdasarkan ID.
+- GET `/books/title/:title`: Mendapatkan data buku berdasarkan judul.
 - POST `/books`: Membuat buku baru.
 - PUT `/books/:id`: Mengupdate data buku berdasarkan ID.
 - DELETE `/books/:id`: Menghapus buku berdasarkan ID.
@@ -50,16 +53,31 @@ Anda dapat menggunakan API ini untuk berbagai keperluan seperti peminjaman buku,
 ### Peminjaman (Borrowing):
 - GET `/borrow`: Mendapatkan daftar semua peminjaman.
 - GET `/borrow/:id`: Mendapatkan data peminjaman berdasarkan ID.
+- GET `/borrow/name/:name`: Mendapatkan data peminjaman buku berdasarkan nama pengguna.
 - POST `/borrow`: Melakukan peminjaman buku.
 - PUT `/borrow/:id`: Mengupdate data peminjaman berdasarkan ID.
 - DELETE `/borrow/:id`: Menghapus data peminjaman berdasarkan ID.
 
+### Penulis (Author):
+- GET `/authors`: Mendapatkan daftar semua peminjaman.
+- GET `/authors/:id`: Mendapatkan data peminjaman berdasarkan ID.
+- GET `/users/name/:name`: Mendapatkan data penulis berdasarkan nama.
+- POST `/authors`: Melakukan peminjaman buku.
+- PUT `/authors/:id`: Mengupdate data peminjaman berdasarkan ID.
+- DELETE `/authors/:id`: Menghapus data peminjaman berdasarkan ID.
+
+<!-- 
 ### Permintaan Buku (Book Requests):
 - GET `/chat`: Mendapatkan daftar semua pesan.
 - GET `/chat/:id`: Mendapatkan data pesan berdasarkan ID.
 - POST `/chat`: Membuat pesan baru.
 - PUT `/chat/:id`: Mengupdate data pesan berdasarkan ID.
-- DELETE `/chat/:id`: Menghapus data pesan berdasarkan ID.
+- DELETE `/chat/:id`: Menghapus data pesan berdasarkan ID. -->
+
+## Dokumentasi
+
+Dokumentasi dapat dilihat pada [tautan ini](https://documenter.getpostman.com/view/23660564/2s9YRFVVZ8#5ad2708b-c887-441f-9c90-e18d05f8c884) untuk detail lebih lanjut
+
 
 ## Desain Database
 
