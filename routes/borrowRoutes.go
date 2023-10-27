@@ -24,6 +24,7 @@ func BorrowRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	borrowsGroup.GET("", borrowController.GetBorrowsController)
 	borrowsGroup.GET("/:id", borrowController.GetBorrowController)
+	borrowsGroup.GET("/name/:name", borrowController.GetBorrowsByUserNameController)
 	borrowsGroup.POST("", borrowController.CreateBorrowController)
 	borrowsGroup.POST("/:id", borrowController.ReturnBorrowController)
 	borrowsGroup.DELETE("/:id", borrowController.DeleteBorrowController)

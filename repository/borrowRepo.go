@@ -17,6 +17,7 @@ type BorrowRepository interface {
 	Update(borrow *domain.Borrow, id int) (*domain.Borrow, error)
 	GetBookQuantity(bookID int) (int, error)
 	FindById(id int) (*domain.Borrow, error)
+	FindBorrowsByUserName(name string) ([]domain.Borrow, error)
 	FindAll() ([]domain.Borrow, error)
 	Delete(id int) error
 }
@@ -181,6 +182,26 @@ func (repository *BorrowRepositoryImpl) FindById(id int) (*domain.Borrow, error)
 	fmt.Println(borrow)
 
 	return &borrow, nil
+}
+
+func (repository *BorrowRepositoryImpl) FindBorrowsByUserName(name string) ([]domain.Borrow, error) {
+	borrows := []domain.Borrow{}
+
+	query := `
+        SELECT borrows.*, books.title AS book_title, users.name AS user_name
+        FROM borrows
+        LEFT JOIN books ON borrows.book_id = books.id
+        LEFT JOIN users ON borrows.user_id = users.id
+        WHERE LOWER(users.name) LIKE LOWER(?)
+    `
+
+	// Eksekusi pernyataan SQL dengan db.Raw
+	result := repository.DB.Raw(query, "%"+name+"%").Scan(&borrows)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return borrows, nil
 }
 
 func (repository *BorrowRepositoryImpl) FindAll() ([]domain.Borrow, error) {
