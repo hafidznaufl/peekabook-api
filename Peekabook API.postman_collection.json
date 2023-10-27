@@ -1,0 +1,1133 @@
+{
+	"info": {
+		"_postman_id": "32bdc67c-368b-4cb8-8c04-7f37bd60b54d",
+		"name": "Peekabook API",
+		"description": "Dokumentasi ini menjelaskan endpoint-endpoint yang tersedia di aplikasi Peekabook. Aplikasi ini memiliki beberapa entitas utama, termasuk `user`, `admin`, `borrow`, `book` dan `author`. Setiap entitas memiliki berbagai operasi yang dapat dilakukan melalui API. Untuk mengakses API, Anda harus mengotentikasi dengan menggunakan token JWT.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23660564"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Mendaftarkan pengguna baru"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var token = jsonData.results.token;\r",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Masuk ke akun pengguna"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Mendapatkan semua pengguna"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"6"
+							]
+						},
+						"description": "Mendapatkan informasi data pengguna berdasarkan id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/name/naufal",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"name",
+								"naufal"
+							]
+						},
+						"description": "Mendapatkan informasi data pengguna berdasarkan nama"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Hafidz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						},
+						"description": "Memperbarui informasi pengguna"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						},
+						"description": "Menghapus data pengguna"
+					},
+					"response": []
+				}
+			],
+			"description": "Enpoint layanan pengguna"
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/admin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin"
+							]
+						},
+						"description": "Mendaftarkan admin baru"
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var token = jsonData.results.token;\r",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/admin/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						},
+						"description": "Masuk kedalam akun admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Admins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/admin",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin"
+							]
+						},
+						"description": "Mendapatkan semua daftar admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/admin/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin",
+								"2"
+							]
+						},
+						"description": "Mendaftarkan informasi data admin berdasarkan id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin by Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/admin/name/naufal",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin",
+								"name",
+								"naufal"
+							]
+						},
+						"description": "Mendaftarkan informasi data admin berdasarkan nama"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/admin/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin",
+								"3"
+							]
+						},
+						"description": "Memperbarui informasi admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/admin/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"admin",
+								"3"
+							]
+						},
+						"description": "Menghapus data admin"
+					},
+					"response": []
+				}
+			],
+			"description": "Enpoint layanan pengguna"
+		},
+		{
+			"name": "Borrow",
+			"item": [
+				{
+					"name": "Post Borrow",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": 2,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/borrow",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow"
+							]
+						},
+						"description": "Meminjam buku"
+					},
+					"response": []
+				},
+				{
+					"name": "Return Borrow",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/borrow/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow",
+								"2"
+							]
+						},
+						"description": "Mengembalikan buku yg sudah dipinjam"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Borrows",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/borrow",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow"
+							]
+						},
+						"description": "Mendapatkan daftar semua peminjaman buku"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Borrow by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/borrow/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow",
+								"1"
+							]
+						},
+						"description": "Mendapatkan informasi peminjaman buku berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Borrow by User Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/borrow/name/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow",
+								"name",
+								""
+							]
+						},
+						"description": "Mendapatkan informasi peminjaman buku berdasarkan nama user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Borrow",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": 2,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/borrow/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow",
+								"3"
+							]
+						},
+						"description": "Memperbarui data peminjaman buku"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Borrow",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/borrow/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"borrow",
+								"3"
+							]
+						},
+						"description": "Menghapus data peminjaman buku"
+					},
+					"response": []
+				}
+			],
+			"description": "Layanan endpoint borrow"
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Post Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"21 Centuries\",\r\n    \"authorId\": 1,\r\n    \"page\": 434,\r\n    \"years\": 2009,\r\n    \"publisher\": \"Centuries Corp\",\r\n    \"type\": \"Jurnal\",\r\n    \"quantity\": 56,\r\n    \"status\": \"Available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						},
+						"description": "Menambahkan buku baru"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books"
+							]
+						},
+						"description": "Mendaftarkan daftar semua buku"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/6",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"6"
+							]
+						},
+						"description": "Mendapatkan informasi buku berdasarkan id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by Title",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/name/eve",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"name",
+								"eve"
+							]
+						},
+						"description": "Mendapatkan informasi buku berdasarkan judul"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 3,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"3"
+							]
+						},
+						"description": "Memperbarui informasi buku"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/books/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"books",
+								"3"
+							]
+						},
+						"description": "Menghapus informasi buku"
+					},
+					"response": []
+				}
+			],
+			"description": "Layanan endpoint buku"
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Post Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"God Ussop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/authors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors"
+							]
+						},
+						"description": "Menambahkan penulis baru"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Authors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/authors",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors"
+							]
+						},
+						"description": "Mendapatkan daftar semua penulis"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/authors/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors",
+								"1"
+							]
+						},
+						"description": "Mendapatkan informasi penulis berdasarkan id"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/authors/name/singa",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors",
+								"name",
+								"singa"
+							]
+						},
+						"description": "Mendapatkan informasi penulis berdasarkan id"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Naufal D. Opal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/authors/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors",
+								"1"
+							]
+						},
+						"description": "Memperbarui informasi penulis"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Authors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/authors/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"authors",
+								"2"
+							]
+						},
+						"description": "Menghapus penulis"
+					},
+					"response": []
+				}
+			],
+			"description": "Layanan endpoint penulis"
+		}
+	]
+}
