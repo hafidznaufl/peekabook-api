@@ -163,7 +163,7 @@ func (c *BorrowControllerImpl) UpdateBorrowController(ctx echo.Context) error {
 
 	response := res.BorrowDomaintoBorrowResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Borrow Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Borrow Data", response))
 }
 
 func (c *BorrowControllerImpl) DeleteBorrowController(ctx echo.Context) error {
@@ -182,5 +182,5 @@ func (c *BorrowControllerImpl) DeleteBorrowController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Borrow Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Borrow Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Deleted Borrow Data", nil))
 }

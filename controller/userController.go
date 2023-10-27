@@ -87,7 +87,7 @@ func (c *UserControllerImpl) LoginUserController(ctx echo.Context) error {
 
 	userLoginResponse.Token = token
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign In", userLoginResponse))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Sign In", userLoginResponse))
 }
 
 func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
@@ -108,7 +108,7 @@ func (c *UserControllerImpl) GetUserController(ctx echo.Context) error {
 
 	response := res.UserDomaintoUserResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get All Users Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Users Data", response))
 }
 
 func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
@@ -123,7 +123,7 @@ func (c *UserControllerImpl) GetUsersController(ctx echo.Context) error {
 
 	response := res.ConvertUserResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get User Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get User Data", response))
 }
 
 func (c *UserControllerImpl) GetUserByNameController(ctx echo.Context) error {
@@ -171,7 +171,7 @@ func (c *UserControllerImpl) UpdateUserController(ctx echo.Context) error {
 
 	response := res.UserDomaintoUserResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated User Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated User Data", response))
 }
 
 func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
@@ -190,5 +190,5 @@ func (c *UserControllerImpl) DeleteUserController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete User Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted User Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Deleted User Data", nil))
 }

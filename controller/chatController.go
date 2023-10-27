@@ -133,7 +133,7 @@ func (c *ChatControllerImpl) UpdateChatController(ctx echo.Context) error {
 
 	response := res.ChatDomaintoChatResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Chat", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Chat", response))
 }
 
 func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
@@ -152,5 +152,5 @@ func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Chat Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Chat Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Get Chat Data", nil))
 }

@@ -133,7 +133,7 @@ func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 
 	response := res.AuthorDomaintoAuthorResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Author Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Author Data", response))
 }
 
 func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
@@ -152,5 +152,5 @@ func (c *AuthorControllerImpl) DeleteAuthorController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Author Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Author Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Deleted Author Data", nil))
 }

@@ -87,7 +87,7 @@ func (c *AdminControllerImpl) LoginAdminController(ctx echo.Context) error {
 
 	adminLoginResponse.Token = token
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Sign In", adminLoginResponse))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Sign In", adminLoginResponse))
 }
 
 func (c *AdminControllerImpl) GetAdminController(ctx echo.Context) error {
@@ -108,7 +108,7 @@ func (c *AdminControllerImpl) GetAdminController(ctx echo.Context) error {
 
 	response := res.AdminDomaintoAdminResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get Admin Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Admin Data", response))
 }
 
 func (c *AdminControllerImpl) GetAdminsController(ctx echo.Context) error {
@@ -123,7 +123,7 @@ func (c *AdminControllerImpl) GetAdminsController(ctx echo.Context) error {
 
 	response := res.ConvertAdminResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Get All Admin Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Admin Data", response))
 }
 
 func (c *AdminControllerImpl) GetAdminByNameController(ctx echo.Context) error {
@@ -171,7 +171,7 @@ func (c *AdminControllerImpl) UpdateAdminController(ctx echo.Context) error {
 
 	response := res.AdminDomaintoAdminResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Admin Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Admin Data", response))
 }
 
 func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
@@ -190,5 +190,5 @@ func (c *AdminControllerImpl) DeleteAdminController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Admin Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Admin Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Deleted Admin Data", nil))
 }

@@ -132,7 +132,7 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 
 	response := res.UpdateBookDomaintoBookResponse(result)
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Updated Book Data", response))
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Book Data", response))
 }
 
 func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
@@ -151,5 +151,5 @@ func (c *BookControllerImpl) DeleteBookController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Book Data Error"))
 	}
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Deleted Book Data", nil))
+	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Deleted Book Data", nil))
 }
