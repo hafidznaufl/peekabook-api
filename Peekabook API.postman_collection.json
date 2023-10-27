@@ -848,7 +848,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/books/name/eve",
+							"raw": "{{host}}/books/title/eve",
 							"host": [
 								"{{host}}"
 							],
