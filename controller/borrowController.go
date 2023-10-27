@@ -17,6 +17,7 @@ type BorrowController interface {
 	ReturnBorrowController(ctx echo.Context) error
 	UpdateBorrowController(ctx echo.Context) error
 	GetBorrowController(ctx echo.Context) error
+	GetBorrowsByUserNameController(ctx echo.Context) error
 	GetBorrowsController(ctx echo.Context) error
 	DeleteBorrowController(ctx echo.Context) error
 }
@@ -100,6 +101,23 @@ func (c *BorrowControllerImpl) GetBorrowController(ctx echo.Context) error {
 	response := res.BorrowDomaintoBorrowResponse(result)
 
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Borrow Data", response))
+}
+
+func (c *BorrowControllerImpl) GetBorrowsByUserNameController(ctx echo.Context) error {
+	userName := ctx.Param("name")
+
+	result, err := c.BorrowContext.FindBorrowsByUserName(ctx, userName)
+	if err != nil {
+		if strings.Contains(err.Error(), "borrows not found") {
+			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Borrows Not Found for User"))
+		}
+
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Borrow Data Error"))
+	}
+
+	response := res.ConvertBorrowResponse(result)
+
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Borrows for User", response))
 }
 
 func (c *BorrowControllerImpl) GetBorrowsController(ctx echo.Context) error {

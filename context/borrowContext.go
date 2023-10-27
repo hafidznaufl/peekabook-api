@@ -17,6 +17,7 @@ type BorrowContext interface {
 	ReturnBorrow(ctx echo.Context, id int) (*domain.Borrow, error)
 	UpdateBorrow(ctx echo.Context, request web.BorrowUpdateRequest, id int) (*domain.Borrow, error)
 	FindById(ctx echo.Context, id int) (*domain.Borrow, error)
+	FindBorrowsByUserName(ctx echo.Context, userName string) ([]domain.Borrow, error)
 	FindAll(ctx echo.Context) ([]domain.Borrow, error)
 	DeleteBorrow(ctx echo.Context, id int) error
 }
@@ -98,7 +99,20 @@ func (context *BorrowContextImpl) FindById(ctx echo.Context, id int) (*domain.Bo
 		return nil, fmt.Errorf("borrow not found")
 	}
 
-	fmt.Println(borrow)
+	return borrow, nil
+}
+
+func (context *BorrowContextImpl) FindBorrowsByUserName(ctx echo.Context, userName string) ([]domain.Borrow, error) {
+
+	borrow, err := context.BorrowRepository.FindBorrowsByUserName(userName)
+
+	if err != nil {
+		return nil, fmt.Errorf("borrow not found")
+	}
+
+	if len(borrow) == 0 {
+		return nil, fmt.Errorf("borrows not found for user: %s", userName)
+	}
 
 	return borrow, nil
 }
