@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/gorilla/websocket"
 	"github.com/labstack/echo/v4"
 )
 
@@ -20,14 +21,24 @@ type ChatController interface {
 	GetChatsController(ctx echo.Context) error
 	GetChatByNameController(ctx echo.Context) error
 	DeleteChatController(ctx echo.Context) error
+	HandleWebSocket(ctx echo.Context) error
 }
 
 type ChatControllerImpl struct {
 	ChatContext context.ChatContext
+	Upgrader    websocket.Upgrader
 }
 
 func NewChatController(chatContext context.ChatContext) ChatController {
-	return &ChatControllerImpl{ChatContext: chatContext}
+	upgrader := websocket.Upgrader{
+		ReadBufferSize:  1024,
+		WriteBufferSize: 1024,
+	}
+
+	return &ChatControllerImpl{
+		ChatContext: chatContext,
+		Upgrader:    upgrader,
+	}
 }
 
 func (c *ChatControllerImpl) CreateChatController(ctx echo.Context) error {
@@ -153,4 +164,31 @@ func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Get Chat Data", nil))
+}
+
+func (c *ChatControllerImpl) HandleWebSocket(ctx echo.Context) error {
+
+	conn, err := c.Upgrader.Upgrade(ctx.Response(), ctx.Request(), nil)
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	clients := make(map[*websocket.Conn]bool)
+
+	for {
+		messageType, p, err := conn.ReadMessage()
+		if err != nil {
+			break
+		}
+
+		for client := range clients {
+			err := client.WriteMessage(messageType, p)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
 }

@@ -1,13 +1,11 @@
 package routes
 
 import (
-	"os"
 	"peekabook/context"
 	"peekabook/controller"
 	"peekabook/repository"
 
 	"github.com/go-playground/validator"
-	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -20,7 +18,9 @@ func ChatRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	chatsGroup := e.Group("chats")
 
-	chatsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
+	// chatsGroup.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET"))))
+
+	chatsGroup.GET("/ws", chatController.HandleWebSocket)
 
 	chatsGroup.GET("", chatController.GetChatsController)
 	chatsGroup.GET("/:id", chatController.GetChatController)
