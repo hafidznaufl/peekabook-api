@@ -1,11 +1,14 @@
 package web
 
-import "time"
-
 type ChatResponse struct {
-	ID      uint      `json:"id"`
-	Message string    `json:"message"`
-	AdminID uint      `json:"adminId"`
-	UserID  uint      `json:"userId"`
-	Date    time.Time `json:"date"`
+	Message  string `json:"message"`
+	Sender   string `json:"sender"`
+	Receiver string `json:"receiver"`
+}
+
+type ChatCreateResponse struct {
+	ID       string `json:"id"`
+	Message  string `json:"message"`
+	Sender   string `json:"sender"`
+	Receiver string `json:"receiver"`
 }

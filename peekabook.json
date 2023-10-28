@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "peekabook-api",
+  "private_key_id": "ce3b37acaeab279a9ed5f31ee93e00cd4f446966",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDtIclgZ+4PaWuL\nJFGhUpa2qSChbR/6cTlnHb0t7bdAUfMf8AgjXiCDxCbv8nXIxl8AtN4p1XQ60kdH\nWu/BlBQZGKWfHPrvfoUjXNsQAnKphl73yT56ZO/wrQxRO7yzXU2i8iol/j1Q5ZKU\npVg9mMlAVG3j0SPUxP6nrvlu1oUBm6qwsMFKK2EmkjdVYiKtvwRgJ4nI0iI4MzHY\n2KGK+F3ZaQtclfID4zepvaUW5Qvs1Z0Mj0q1JMGZB3P5EerDhEepAHJZYbYa4bCu\nqDlqnf/6LTwuoZDLD/r5S3+WVsZigwloy6lQxx+jaKOvu0813Zw/hAeyAxZkXHrw\nb9HbRxIVAgMBAAECggEADpCogNTOL4FaV+KNzQRFbS5enbh8YiXTajA01X31AOz6\n3pEf8gqVbq9J2pHtU1az5Fdq3SDwq0hAYcA5J8FQdrYn17awLXoU88+y30ndmk7X\n+HPfWljNNng6k6bBEWp/gUZ+LKhwD076inzMoOpVU8k1ZeylPPiYng4TFHbCsEJH\naSLOwElXyT+b+TE8b8gg35/C4of0JQES/uN97Cvr6J8LEZY+Mv1sMtFKgvjgjLwQ\niJf5gf3jyYCu1JTK1syIyqpRphVj8B48iKlx+1kehYbvM9o7PQM9pCloOLPUWmA/\nZhTKBtaHn/aKZIm+3mjCEwpKz/oytjLL3pdjkWh5hQKBgQD4oJkPeEAWTb8RCVOx\nm89GS2rBC22FbP8Tctehxc9cq1JsWlY1M3I7grqDDkpvDkALo+Fn3ysjAiVcdXS1\npJ9YwPmJW0HZPU/0Rp4K1B8vZZKUMoezOqdtguHv5LzdQPc0eJzG8V27xVHV48Nd\nUD/xGozzJg9xHYUONiVS59rlOwKBgQD0KeyVZjToG61pBaekm3WFFtI4yla34C0p\nTRtXBSKWyYu/L8BUc2lXaQt38rB+rFrnDneyGQ50drl4i4lnAY19NYsu0jPUoRdI\n28/CgBCfpYrmyw2zO0/MKw9/WvRdx13nfMUD5hxyjWaEpLiNQ+bgB/Rn53QHI4No\n7OjqodAw7wKBgHzy+Pk1Tb/nwqYlMdKIo1qIfFYYECqF5Is5o/TBHL1NvFaH79s8\nx6PwxxsmC3JUjwtKiPVSyrMFWRFmVgkTeqF4GfBV1HoAvjXdZ3+5qxJ+0XN5EYmZ\naJs4s6OEKQZop9PO6btxgdHkEISVupEiy3+4AC4SaqBGXaAOxiMsMm4RAoGBALFP\n1NB2BcvddaRECAeBIeoBta6qOimUMhfBOC6Mux63xLWVzt1FZuWkkkCMTOHg9q6/\nEeuTSK0JHw3Mf37/YKnh/W6GFj++sLMndgwwhmH5jRKnuQ5E72E8kCeTfMyxoJ8g\nO87mCBikWSPQn3lvKzXccQAX1Gnuv1quWUMzOYafAoGBAPY38F5+UnIwiEjJZbL5\nT8P8kwHzcLYjcriJE/7WXmXMzwzUNw4cl7tKS6nIzgNO4twfgG59rYgryk4loLsx\nBrFYjHgZwsft6MUevZNHG8SqGiTFfiYoV/zEEaxb4OBLcleW8DL6WUeL6BKp1WY5\nEWxxtxT+zzciEDgxHC3bbbmE\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-yeht0@peekabook-api.iam.gserviceaccount.com",
+  "client_id": "101595667253156246763",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-yeht0%40peekabook-api.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

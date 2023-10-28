@@ -1,194 +1,182 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
-	"peekabook/context"
 	"peekabook/model/web"
 	"peekabook/utils/helper"
-	"peekabook/utils/res"
-	"strconv"
-	"strings"
 
-	"github.com/gorilla/websocket"
+	"cloud.google.com/go/firestore"
+	firebase "firebase.google.com/go"
 	"github.com/labstack/echo/v4"
 )
 
 type ChatController interface {
-	CreateChatController(ctx echo.Context) error
-	UpdateChatController(ctx echo.Context) error
-	GetChatController(ctx echo.Context) error
-	GetChatsController(ctx echo.Context) error
-	GetChatByNameController(ctx echo.Context) error
-	DeleteChatController(ctx echo.Context) error
-	HandleWebSocket(ctx echo.Context) error
+	SendMessageController(ctx echo.Context) error
+	GetMessagesByReceiverController(ctx echo.Context) error
+	GetAllChatsController(ctx echo.Context) error
+	UpdateMessageByIDController(ctx echo.Context) error
+	DeleteMessageByIDController(ctx echo.Context) error
 }
 
 type ChatControllerImpl struct {
-	ChatContext context.ChatContext
-	Upgrader    websocket.Upgrader
+	FirebaseApp *firebase.App
 }
 
-func NewChatController(chatContext context.ChatContext) ChatController {
-	upgrader := websocket.Upgrader{
-		ReadBufferSize:  1024,
-		WriteBufferSize: 1024,
-	}
-
-	return &ChatControllerImpl{
-		ChatContext: chatContext,
-		Upgrader:    upgrader,
-	}
+func NewChatController(Firebase *firebase.App) *ChatControllerImpl {
+	return &ChatControllerImpl{FirebaseApp: Firebase}
 }
 
-func (c *ChatControllerImpl) CreateChatController(ctx echo.Context) error {
+func (c *ChatControllerImpl) SendMessageController(ctx echo.Context) error {
 	chatCreateRequest := web.ChatCreateRequest{}
-	err := ctx.Bind(&chatCreateRequest)
-	if err != nil {
+	if err := ctx.Bind(&chatCreateRequest); err != nil {
 		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
 	}
 
-	result, err := c.ChatContext.CreateChat(ctx, chatCreateRequest)
+	dbClient, err := c.FirebaseApp.Firestore(ctx.Request().Context())
 	if err != nil {
-		if strings.Contains(err.Error(), "validation failed") {
-			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
-
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Chat Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Database Connection Error: "+err.Error()))
 	}
 
-	response := res.ChatDomaintoChatResponse(result)
+	chatsCollection := dbClient.Collection("chat")
 
-	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Create Chat", response))
+	chatData := web.ChatCreateResponse{
+		Message:  chatCreateRequest.Message,
+		Sender:   chatCreateRequest.Sender,
+		Receiver: chatCreateRequest.Receiver,
+	}
+
+	result, _, err := chatsCollection.Add(ctx.Request().Context(), chatData)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Create Chat Error: "+err.Error()))
+	}
+
+	chatID := result.ID
+
+	chatData.ID = chatID
+
+	response := chatData
+
+	return ctx.JSON(http.StatusCreated, helper.SuccessResponse("Successfully Send Message", response))
 }
 
-func (c *ChatControllerImpl) GetChatController(ctx echo.Context) error {
-	chatId := ctx.Param("id")
-	chatIdInt, err := strconv.Atoi(chatId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
+func (c *ChatControllerImpl) GetMessagesByReceiverController(ctx echo.Context) error {
+    receiver := ctx.Param("receiver")
+    if receiver == "" {
+        return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Receiver parameter is required"))
+    }
 
-	result, err := c.ChatContext.FindById(ctx, chatIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "chat not found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
-		}
+    dbClient, err := c.FirebaseApp.Firestore(ctx.Request().Context())
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Database Connection Error: " + err.Error()))
+    }
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Chat Data Error"))
-	}
+    chatsCollection := dbClient.Collection("chat")
+    query := chatsCollection.Where("Receiver", "==", receiver)
+    docs, err := query.Documents(ctx.Request().Context()).GetAll()
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Messages by Receiver Error: " + err.Error()))
+    }
 
-	response := res.ChatDomaintoChatResponse(result)
+    var messages []web.ChatCreateResponse
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Chat Data", response))
+    for _, doc := range docs {
+        var message web.ChatCreateResponse
+        if err := doc.DataTo(&message); err != nil {
+            return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error parsing chat data: " + err.Error()))
+        }
+
+        // Setel ID dokumen ke ID dalam response.
+        message.ID = doc.Ref.ID
+
+        messages = append(messages, message)
+    }
+
+    return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Messages by Receiver", messages))
 }
 
-func (c *ChatControllerImpl) GetChatsController(ctx echo.Context) error {
-	result, err := c.ChatContext.FindAll(ctx)
-	if err != nil {
-		if strings.Contains(err.Error(), "chats not Found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chats Not Found"))
-		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Chats Data Error"))
-	}
+func (c *ChatControllerImpl) GetAllChatsController(ctx echo.Context) error {
+    dbClient, err := c.FirebaseApp.Firestore(ctx.Request().Context())
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Database Connection Error: " + err.Error()))
+    }
 
-	response := res.ConvertChatResponse(result)
+    chatsCollection := dbClient.Collection("chat")
+    docs, err := chatsCollection.Documents(ctx.Request().Context()).GetAll()
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get All Chats Error: " + err.Error()))
+    }
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Chat Data", response))
+    var chats []web.ChatCreateResponse
+
+    for _, doc := range docs {
+        var chat web.ChatCreateResponse
+        if err := doc.DataTo(&chat); err != nil {
+            return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Error parsing chat data: " + err.Error()))
+        }
+
+        // Setel ID dokumen ke ID dalam response.
+        chat.ID = doc.Ref.ID
+
+        chats = append(chats, chat)
+    }
+
+    return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get All Chats", chats))
 }
 
-func (c *ChatControllerImpl) GetChatByNameController(ctx echo.Context) error {
-	chatName := ctx.Param("name")
 
-	result, err := c.ChatContext.FindByName(ctx, chatName)
-	if err != nil {
-		if strings.Contains(err.Error(), "chat not found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
-		}
+func (c *ChatControllerImpl) UpdateMessageByIDController(ctx echo.Context) error {
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Chat Data By Name Error"))
-	}
-
-	response := res.ChatDomaintoChatResponse(result)
-	fmt.Println(response)
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Get Chat Data By Name", response))
-}
-
-func (c *ChatControllerImpl) UpdateChatController(ctx echo.Context) error {
-	chatId := ctx.Param("id")
-	chatIdInt, err := strconv.Atoi(chatId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
+	messageID := ctx.Param("id")
 
 	chatUpdateRequest := web.ChatUpdateRequest{}
-	err = ctx.Bind(&chatUpdateRequest)
-	if err != nil {
+	if err := ctx.Bind(&chatUpdateRequest); err != nil {
 		return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Client Input"))
 	}
 
-	result, err := c.ChatContext.UpdateChat(ctx, chatUpdateRequest, chatIdInt)
+	dbClient, err := c.FirebaseApp.Firestore(ctx.Request().Context())
 	if err != nil {
-		if strings.Contains(err.Error(), "validation failed") {
-			return ctx.JSON(http.StatusBadRequest, helper.ErrorResponse("Invalid Validation"))
-		}
-
-		if strings.Contains(err.Error(), "chat not found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
-		}
-
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Chat Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Database Connection Error: "+err.Error()))
 	}
 
-	response := res.ChatDomaintoChatResponse(result)
+	chatsCollection := dbClient.Collection("chat")
 
-	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Chat", response))
+	messageRef := chatsCollection.Doc(messageID)
+
+	_, err = messageRef.Get(ctx.Request().Context())
+	if err != nil {
+		return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Message not found"))
+	}
+
+	_, err = messageRef.Set(ctx.Request().Context(), chatUpdateRequest, firestore.MergeAll)
+	if err != nil {
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Message Error: "+err.Error()))
+	}
+
+	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Message Updated Successfully", chatUpdateRequest))
 }
 
-func (c *ChatControllerImpl) DeleteChatController(ctx echo.Context) error {
-	chatId := ctx.Param("id")
-	chatIdInt, err := strconv.Atoi(chatId)
-	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Invalid Param Id"))
-	}
+func (c *ChatControllerImpl) DeleteMessageByIDController(ctx echo.Context) error {
+    // Dapatkan ID pesan yang akan dihapus dari parameter permintaan HTTP.
+    messageID := ctx.Param("id")
 
-	err = c.ChatContext.DeleteChat(ctx, chatIdInt)
-	if err != nil {
-		if strings.Contains(err.Error(), "chat not found") {
-			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Chat Not Found"))
-		}
+    // Dapatkan klien Firestore.
+    dbClient, err := c.FirebaseApp.Firestore(ctx.Request().Context())
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Database Connection Error: " + err.Error()))
+    }
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Chat Data Error"))
-	}
+    // Tentukan koleksi Firestore yang sesuai (misalnya, "chat").
+    chatsCollection := dbClient.Collection("chat")
 
-	return ctx.JSON(http.StatusNoContent, helper.SuccessResponse("Successfully Get Chat Data", nil))
-}
+    // Buat referensi dokumen berdasarkan ID pesan.
+    messageRef := chatsCollection.Doc(messageID)
 
-func (c *ChatControllerImpl) HandleWebSocket(ctx echo.Context) error {
+    // Hapus pesan berdasarkan ID.
+    _, err = messageRef.Delete(ctx.Request().Context())
+    if err != nil {
+        return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Delete Message Error: " + err.Error()))
+    }
 
-	conn, err := c.Upgrader.Upgrade(ctx.Response(), ctx.Request(), nil)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
-	clients := make(map[*websocket.Conn]bool)
-
-	for {
-		messageType, p, err := conn.ReadMessage()
-		if err != nil {
-			break
-		}
-
-		for client := range clients {
-			err := client.WriteMessage(messageType, p)
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
+    return ctx.JSON(http.StatusOK, helper.SuccessResponse("Message Deleted Successfully", nil))
 }
