@@ -15,6 +15,7 @@ func main() {
 	validate := validator.New()
 	DB := config.ConnectDB()
 	FR := config.ConnectFirebase()
+	AI := config.ConnectOpenAI()
 
 	app.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Welcome to Peek A Book API Services")
@@ -24,8 +25,9 @@ func main() {
 	routes.AdminRoutes(app, DB, validate)
 	routes.AuthorRoutes(app, DB, validate)
 	routes.BookRoutes(app, DB, validate)
-	routes.ChatRoutes(app, FR)
 	routes.BorrowRoutes(app, DB, validate)
+	routes.ChatRoutes(app, FR)
+	routes.RecomRoutes(app, AI)
 
 	app.Pre(middleware.RemoveTrailingSlash())
 	app.Use(middleware.CORS())
