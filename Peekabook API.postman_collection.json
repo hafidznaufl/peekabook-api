@@ -36,9 +36,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/users",
+							"raw": "{{base_url}}/users",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users"
@@ -76,9 +76,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/users/login",
+							"raw": "{{base_url}}/users/login",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users",
@@ -105,9 +105,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/users",
+							"raw": "{{base_url}}/users",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users"
@@ -133,9 +133,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/users/6",
+							"raw": "{{base_url}}/users/6",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users",
@@ -162,9 +162,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/users/name/naufal",
+							"raw": "{{base_url}}/users/name/naufal",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users",
@@ -201,9 +201,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/users/2",
+							"raw": "{{base_url}}/users/2",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users",
@@ -230,9 +230,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/users/3",
+							"raw": "{{base_url}}/users/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"users",
@@ -264,9 +264,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/admin",
+							"raw": "{{base_url}}/admin",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin"
@@ -304,9 +304,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/admin/login",
+							"raw": "{{base_url}}/admin/login",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin",
@@ -333,9 +333,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/admin",
+							"raw": "{{base_url}}/admin",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin"
@@ -361,9 +361,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/admin/2",
+							"raw": "{{base_url}}/admin/2",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin",
@@ -390,9 +390,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/admin/name/naufal",
+							"raw": "{{base_url}}/admin/name/naufal",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin",
@@ -429,9 +429,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/admin/3",
+							"raw": "{{base_url}}/admin/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin",
@@ -458,9 +458,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/admin/3",
+							"raw": "{{base_url}}/admin/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"admin",
@@ -502,9 +502,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/borrow",
+							"raw": "{{base_url}}/borrow",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow"
@@ -530,9 +530,9 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/borrow/2",
+							"raw": "{{base_url}}/borrow/2",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
@@ -594,9 +594,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/borrow",
+							"raw": "{{base_url}}/borrow",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow"
@@ -622,9 +622,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/borrow/1",
+							"raw": "{{base_url}}/borrow/1",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
@@ -651,9 +651,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/borrow/name/",
+							"raw": "{{base_url}}/borrow/name/",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
@@ -690,9 +690,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/borrow/3",
+							"raw": "{{base_url}}/borrow/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
@@ -719,9 +719,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/borrow/3",
+							"raw": "{{base_url}}/borrow/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
@@ -763,9 +763,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/books",
+							"raw": "{{base_url}}/books",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books"
@@ -791,9 +791,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/books",
+							"raw": "{{base_url}}/books",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books"
@@ -819,9 +819,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/books/6",
+							"raw": "{{base_url}}/books/6",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books",
@@ -848,13 +848,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/books/title/eve",
+							"raw": "{{base_url}}/books/title/eve",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books",
-								"name",
+								"title",
 								"eve"
 							]
 						},
@@ -887,9 +887,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/books/3",
+							"raw": "{{base_url}}/books/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books",
@@ -916,9 +916,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/books/3",
+							"raw": "{{base_url}}/books/3",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"books",
@@ -960,9 +960,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/authors",
+							"raw": "{{base_url}}/authors",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors"
@@ -988,9 +988,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/authors",
+							"raw": "{{base_url}}/authors",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors"
@@ -1016,9 +1016,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/authors/1",
+							"raw": "{{base_url}}/authors/1",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors",
@@ -1045,9 +1045,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/authors/name/singa",
+							"raw": "{{base_url}}/authors/name/singa",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors",
@@ -1084,9 +1084,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/authors/1",
+							"raw": "{{base_url}}/authors/1",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors",
@@ -1113,9 +1113,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/authors/2",
+							"raw": "{{base_url}}/authors/2",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"authors",
@@ -1128,6 +1128,299 @@
 				}
 			],
 			"description": "Layanan endpoint penulis"
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Send Message",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/send",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chat",
+								"send"
+							]
+						},
+						"description": "Mengirim Pesan"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Messages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/chat",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chat"
+							]
+						},
+						"description": "Mendapatkan Daftar Semua Pesan"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Messages by Receiver",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/chat/admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chat",
+								"admin"
+							]
+						},
+						"description": "Membaca pesan"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Message",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/chat/id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chat",
+								"id"
+							]
+						},
+						"description": "Memeperbarui pesan"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/chat/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chat",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Menghapus pesan"
+					},
+					"response": []
+				}
+			],
+			"description": "Realtime chat enpoint services"
+		},
+		{
+			"name": "Recommendation",
+			"item": [
+				{
+					"name": "Get Book Recommendation",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"genre\": \"adventure\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/recommendations",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"recommendations"
+							]
+						},
+						"description": "Mendaparkan rekomendasi berdasarkan rekomendasi"
+					},
+					"response": []
+				}
+			],
+			"description": "Mendapatkan rekomendasi buku berdasarkan genre"
 		}
 	]
 }
