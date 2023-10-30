@@ -30,6 +30,14 @@ func AdminDomaintoAdminResponse(user *domain.Admin) web.AdminReponse {
 	}
 }
 
+func UpdateAdminDomaintoAdminResponse(id uint, user *domain.Admin) web.AdminReponse {
+	return web.AdminReponse{
+		Id:    id,
+		Name:  user.Name,
+		Email: user.Email,
+	}
+}
+
 func ConvertAdminResponse(users []domain.Admin) []web.AdminReponse {
 	var results []web.AdminReponse
 	for _, user := range users {
