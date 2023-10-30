@@ -130,7 +130,7 @@ func (c *BookControllerImpl) UpdateBookController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Book Error"))
 	}
 
-	response := res.UpdateBookDomaintoBookResponse(result)
+	response := res.UpdateBookDomaintoBookResponse(uint(bookIdInt), result)
 
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Book Data", response))
 }
