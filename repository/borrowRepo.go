@@ -5,7 +5,6 @@ import (
 	"peekabook/model/domain"
 	"peekabook/model/schema"
 	"peekabook/utils/req"
-	"peekabook/utils/res"
 	"time"
 
 	"gorm.io/gorm"
@@ -83,11 +82,23 @@ func (repository *BorrowRepositoryImpl) Create(borrow *domain.Borrow) (*domain.B
 		}
 	}
 
+	// Commit the transaction to apply all changes to the database
 	tx.Commit()
 
-	results := res.BorrowSchematoBorrowDomain(borrowDb)
+	// Now, perform the SELECT JOIN
+	query := `
+		SELECT borrows.*, books.title AS book_title, users.name AS user_name
+		FROM borrows
+		LEFT JOIN books ON borrows.book_id = books.id
+		LEFT JOIN users ON borrows.user_id = users.id
+		WHERE borrows.id = ?
+	`
 
-	return results, nil
+	if err := repository.DB.Raw(query, borrowDb.ID).Scan(&borrow).Error; err != nil {
+		return nil, err
+	}
+
+	return borrow, nil
 }
 
 func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borrow, error) {
@@ -122,7 +133,7 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 	if book.Quantity > 0 && book.Status == "Unavailable" {
 		result = tx.Model(&book).Update("status", "Available")
 		if result.Error != nil {
-			tx.Rollback() // Rollback the transaction on error
+			tx.Rollback()
 			return nil, result.Error
 		}
 	}
@@ -130,13 +141,28 @@ func (repository *BorrowRepositoryImpl) ReturnBorrow(borrowID int) (*domain.Borr
 	// Step 4: Set the borrow status to "Returned" and update the return date
 	result = tx.Model(&schema.Borrow{}).Where("ID = ?", borrowID).Update("status", "Returned")
 	if result.Error != nil {
-		tx.Rollback() // Rollback the transaction on error
+		tx.Rollback()
 		return nil, result.Error
 	}
 
+	// Commit the transaction to apply all changes to the database
 	tx.Commit()
 
-	return res.BorrowSchematoBorrowDomain(&borrowDb), nil
+	// Now, perform the SELECT JOIN
+	query := `
+        SELECT borrows.*, books.title AS book_title, users.name AS user_name
+        FROM borrows
+        LEFT JOIN books ON borrows.book_id = books.id
+        LEFT JOIN users ON borrows.user_id = users.id
+        WHERE borrows.id = ?
+    `
+
+	var borrow *domain.Borrow
+	if err := repository.DB.Raw(query, borrowID).Scan(&borrow).Error; err != nil {
+		return nil, err
+	}
+
+	return borrow, nil
 }
 
 func (repository *BorrowRepositoryImpl) GetBookQuantity(bookID int) (int, error) {
