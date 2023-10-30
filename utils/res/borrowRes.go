@@ -28,6 +28,17 @@ func BorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.BorrowResponse {
 	}
 }
 
+func UpdateBorrowDomaintoBorrowResponse(id uint, borrow *domain.Borrow) web.BorrowResponse {
+	return web.BorrowResponse{
+		ID:        id,
+		BookTitle: borrow.BookTitle,
+		UserName:  borrow.UserName,
+		Date:      borrow.Date,
+		Return:    borrow.Return,
+		Status:    borrow.Status,
+	}
+}
+
 func CreateBorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.CreateBorrowResponse {
 	return web.CreateBorrowResponse{
 		ID:     borrow.ID,

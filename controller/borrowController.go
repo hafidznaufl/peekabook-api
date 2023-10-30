@@ -161,7 +161,7 @@ func (c *BorrowControllerImpl) UpdateBorrowController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Borrow Error"))
 	}
 
-	response := res.BorrowDomaintoBorrowResponse(result)
+	response := res.UpdateBorrowDomaintoBorrowResponse(uint(borrowIdInt), result)
 
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Borrow Data", response))
 }
