@@ -46,7 +46,204 @@
 						},
 						"description": "Mendaftarkan pengguna baru"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/users",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Sign Up\"\n    },\n    \"results\": {\n        \"id\": 1,\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "409",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Email Already Exist\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Sign Up Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Login User",
@@ -76,9 +273,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/login",
+							"raw": "{{host}}/users/login",
 							"host": [
-								"{{base_url}}"
+								"{{host}}"
 							],
 							"path": [
 								"users",
@@ -87,7 +284,245 @@
 						},
 						"description": "Masuk ke akun pengguna"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Sign In\"\n    },\n    \"results\": {\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImhhZmlkem5hdWZsQGdtYWlsLmNvbSIsImV4cCI6MTY5ODYzNTQ2OCwiaWQiOjEsIm5hbWUiOiJOYXVmYWwifQ.UWro41_8vbyS8MVrJEncIeU9-wQkyHt1mE74HjoVhMM\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Email or Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Email or Password\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "500 Sign In Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Sign In Error\"\n    }\n}"
+						},
+						{
+							"name": "500 Generate JWT Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Generate JWT Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Users",
@@ -115,7 +550,98 @@
 						},
 						"description": "Mendapatkan semua pengguna"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/users",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Users Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admins Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get All Admins Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User by Id",
@@ -144,7 +670,140 @@
 						},
 						"description": "Mendapatkan informasi data pengguna berdasarkan id"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/users/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get User Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"User Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get User Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get User by Name",
@@ -174,7 +833,101 @@
 						},
 						"description": "Mendapatkan informasi data pengguna berdasarkan nama"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/users/name/nau",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"name",
+										"nau"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get User Data By Name\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"User Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get User Data By Name Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Update User",
@@ -212,7 +965,249 @@
 						},
 						"description": "Memperbarui informasi pengguna"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/users/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Updated User Data\"\n    },\n    \"results\": {\n        \"id\": 0,\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"password\": \"$2a$10$5fw4vqzbOHpZaCY3dqKIs.e/.9Zr6CXnZd1Dk3sZ1Fsyb/fWVgNJq\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"User Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Update User Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete User",
@@ -241,7 +1236,182 @@
 						},
 						"description": "Menghapus data pengguna"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/users/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": true,\r\n        \"message\": \"Successfully Deleted User Data\"\r\n    }\r\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"User Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Delete User Data Error\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"description": "Enpoint layanan pengguna"
@@ -274,7 +1444,204 @@
 						},
 						"description": "Mendaftarkan admin baru"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Sign Up\"\n    },\n    \"results\": {\n        \"id\": 1,\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "409",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Email Already Exist\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Sign Up Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Login Admin",
@@ -296,7 +1663,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+							"raw": "{\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -315,7 +1682,245 @@
 						},
 						"description": "Masuk kedalam akun admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/admin/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Sign In\"\n    },\n    \"results\": {\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImhhZmlkem5hdWZsQGdtYWlsLmNvbSIsImV4cCI6MTY5ODYzNTQ2OCwiaWQiOjEsIm5hbWUiOiJOYXVmYWwifQ.UWro41_8vbyS8MVrJEncIeU9-wQkyHt1mE74HjoVhMM\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Email or Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Email or Password\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "500 Sign In Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Sign In Error\"\n    }\n}"
+						},
+						{
+							"name": "500 Generate JWT Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Generate JWT Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Admins",
@@ -343,7 +1948,98 @@
 						},
 						"description": "Mendapatkan semua daftar admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/admin",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Admin Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Users Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get All Users Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Admin by Id",
@@ -361,18 +2057,151 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/admin/2",
+							"raw": "{{base_url}}/admin/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"admin",
-								"2"
+								"1"
 							]
 						},
 						"description": "Mendaftarkan informasi data admin berdasarkan id"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/admin/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"admin",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Admin Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admin Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get Admin Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Admin by Name",
@@ -402,7 +2231,100 @@
 						},
 						"description": "Mendaftarkan informasi data admin berdasarkan nama"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/name/nau",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"name",
+										"nau"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Admin Data By Name\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Naufal\",\n            \"email\": \"hafidznaufl@gmail.com\",\n            \"password\": \"$2a$10$aAQP2ixZyxaBoOiDOLSHs.gdeoHfjX6H02BoiNGp8PD/OlPKYTR1y\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admin Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get Admin Data By Name Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Admin",
@@ -421,7 +2343,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+							"raw": "{\r\n    \"name\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"dadasdasdas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,7 +2362,248 @@
 						},
 						"description": "Memperbarui informasi admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Updated Admin Data\"\n    },\n    \"results\": {\n        \"id\": 0,\n        \"name\": \"Naufal\",\n        \"email\": \"hafidznaufl@gmail.com\",\n        \"password\": \"$2a$10$5fw4vqzbOHpZaCY3dqKIs.e/.9Zr6CXnZd1Dk3sZ1Fsyb/fWVgNJq\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nam\": \"Naufal\",\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admin Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Update Admin Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Admin",
@@ -469,7 +2632,181 @@
 						},
 						"description": "Menghapus data admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": true,\r\n        \"message\": \"Successfully Deleted Admin Data\"\r\n    }\r\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hafidz\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admin Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Delete Admin Data Error\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"description": "Enpoint layanan pengguna"
@@ -494,7 +2831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bookId\": 2,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+							"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -512,7 +2849,195 @@
 						},
 						"description": "Meminjam buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Create Borrow Data\"\n    },\n    \"results\": {\n        \"id\": 2,\n        \"bookId\": 1,\n        \"userId\": 1,\n        \"date\": \"0001-01-01T00:00:00Z\",\n        \"return\": \"2023-11-13T11:27:53.4496949+07:00\",\n        \"status\": \"Borrowed\"\n    }\n}"
+						},
+						{
+							"name": "400 Not Available",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"The Book is Unavailable for Borrowing\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Borrow Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Return Borrow",
@@ -541,7 +3066,144 @@
 						},
 						"description": "Mengembalikan buku yg sudah dipinjam"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Book returned successfully\"\n    },\n    \"results\": {\n        \"id\": 2,\n        \"bookId\": 1,\n        \"userId\": 1,\n        \"date\": \"0001-01-01T00:00:00Z\",\n        \"return\": \"2023-11-13T11:27:53.449+07:00\",\n        \"status\": \"Borrowed\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Not Available",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"The Book is Unavailable for Returning\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Error returning the book\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Borrows",
@@ -604,7 +3266,111 @@
 						},
 						"description": "Mendapatkan daftar semua peminjaman buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Borrows Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 2,\n            \"bookTitle\": \"21 Centuries\",\n            \"userName\": \"Naufal\",\n            \"date\": \"0001-01-01T00:00:00Z\",\n            \"return\": \"2023-11-13T11:27:53.449+07:00\",\n            \"status\": \"Returned\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Borrow Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Borrow Data Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Borrow by Id",
@@ -633,7 +3399,139 @@
 						},
 						"description": "Mendapatkan informasi peminjaman buku berdasarkan ID"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Borrow Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 2,\n            \"bookTitle\": \"21 Centuries\",\n            \"userName\": \"Naufal\",\n            \"date\": \"0001-01-01T00:00:00Z\",\n            \"return\": \"2023-11-13T11:27:53.449+07:00\",\n            \"status\": \"Returned\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Borrow Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get Borrow Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Borrow by User Name",
@@ -651,19 +3549,129 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/borrow/name/",
+							"raw": "{{base_url}}/borrow/name/naufal",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"borrow",
 								"name",
-								""
+								"naufal"
 							]
 						},
 						"description": "Mendapatkan informasi peminjaman buku berdasarkan nama user"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/name/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Borrows for User\"\n    },\n    \"results\": [\n        {\n            \"id\": 2,\n            \"bookTitle\": \"21 Centuries\",\n            \"userName\": \"Naufal\",\n            \"date\": \"0001-01-01T00:00:00Z\",\n            \"return\": \"2023-11-13T11:27:53.449+07:00\",\n            \"status\": \"Returned\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/name/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Borrow Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/name/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Borrow Data Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Borrow",
@@ -682,7 +3690,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bookId\": 2,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
+							"raw": "{\r\n    \"bookId\": 1,\r\n    \"userId\": 1,\r\n    \"status\": \"Borrowed\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -701,17 +3709,263 @@
 						},
 						"description": "Memperbarui data peminjaman buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Updated Borrow Data\"\n    },\n    \"results\": {\n        \"id\": 0,\n        \"bookTitle\": \"21 Centuries\",\n        \"userName\": \"Naufal\",\n        \"date\": \"0001-01-01T00:00:00Z\",\n        \"return\": \"0001-01-01T00:00:00Z\",\n        \"status\": \"Borrowed\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Admin Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Update Borrow Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Borrow",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"type": "jwt",
+							"jwt": [
 								{
-									"key": "token",
-									"value": "{{token}}",
+									"key": "secret",
+									"value": "12345678",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
 									"type": "string"
 								}
 							]
@@ -730,7 +3984,175 @@
 						},
 						"description": "Menghapus data peminjaman buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Deleted Borrow Data\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Borrow Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Delete Borrow Data Error\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"description": "Layanan endpoint borrow"
@@ -773,7 +4195,154 @@
 						},
 						"description": "Menambahkan buku baru"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"21 Centuries\",\r\n    \"authorId\": 1,\r\n    \"page\": 434,\r\n    \"years\": 2009,\r\n    \"publisher\": \"Centuries Corp\",\r\n    \"type\": \"Jurnal\",\r\n    \"quantity\": 56,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/books",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Create Book Data\"\n    },\n    \"results\": {\n        \"id\": 2,\n        \"title\": \"21 Centuries\",\n        \"authorId\": 1,\n        \"page\": 434,\n        \"years\": 2009,\n        \"publisher\": \"Centuries Corp\",\n        \"type\": \"Jurnal\",\n        \"quantity\": 56,\n        \"status\": \"Available\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"21 Centuries\",\r\n    \"authorId\": 1,\r\n    \"page\": 434,\r\n    \"years\": 2009,\r\n    \"publisher\": \"Centuries Corp\",\r\n    \"type\": \"Jurnal\",\r\n    \"quantity\": 56,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/books",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Book Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Books",
@@ -801,7 +4370,106 @@
 						},
 						"description": "Mendaftarkan daftar semua buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Book Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"title\": \"21 Centuries\",\n            \"authorName\": \"God Ussop\",\n            \"page\": 434,\n            \"years\": 2009,\n            \"publisher\": \"Centuries Corp\",\n            \"type\": \"Jurnal\",\n            \"quantity\": 55,\n            \"status\": \"Available\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"21 Centuries\",\n            \"authorName\": \"God Ussop\",\n            \"page\": 434,\n            \"years\": 2009,\n            \"publisher\": \"Centuries Corp\",\n            \"type\": \"Jurnal\",\n            \"quantity\": 56,\n            \"status\": \"Available\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Books Not Found\"\r\n    }\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Boook Data Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Book by Id",
@@ -819,18 +4487,151 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/books/6",
+							"raw": "{{base_url}}/books/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"books",
-								"6"
+								"2"
 							]
 						},
 						"description": "Mendapatkan informasi buku berdasarkan id"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Book Data\"\n    },\n    \"results\": {\n        \"id\": 2,\n        \"title\": \"21 Centuries\",\n        \"authorName\": \"God Ussop\",\n        \"page\": 434,\n        \"years\": 2009,\n        \"publisher\": \"Centuries Corp\",\n        \"type\": \"Jurnal\",\n        \"quantity\": 56,\n        \"status\": \"Available\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/books/d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Book Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"1"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get Book Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Book by Title",
@@ -848,19 +4649,114 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/books/title/eve",
+							"raw": "{{base_url}}/books/title/21",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"books",
 								"title",
-								"eve"
+								"21"
 							]
 						},
 						"description": "Mendapatkan informasi buku berdasarkan judul"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/title/21",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"title",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Book Data By Title\"\n    },\n    \"results\": {\n        \"id\": 1,\n        \"title\": \"21 Centuries\",\n        \"authorName\": \"God Ussop\",\n        \"page\": 434,\n        \"years\": 2009,\n        \"publisher\": \"Centuries Corp\",\n        \"type\": \"Jurnal\",\n        \"quantity\": 55,\n        \"status\": \"Available\"\n    }\n}"
+						},
+						{
+							"name": "Get Book by Title",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/title/eve",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"title",
+										"eve"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Book Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/title/eve",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"title",
+										"eve"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Book Data By Title Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Book",
@@ -879,7 +4775,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 3,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 1,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -887,18 +4783,239 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/books/3",
+							"raw": "{{base_url}}/books/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"books",
-								"3"
+								"2"
 							]
 						},
 						"description": "Memperbarui informasi buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 3,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Updated Book Data\"\n    },\n    \"results\": {\n        \"id\": 0,\n        \"title\": \"Abel Makkonen Tesyafe\",\n        \"authorId\": 1,\n        \"page\": 200,\n        \"years\": 2023,\n        \"publisher\": \"Rakatama\",\n        \"type\": \"Cerita PEndek\",\n        \"quantity\": 235,\n        \"status\": \"Available\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 3,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Book Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/books/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"books",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Update Borrow Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Book",
@@ -927,7 +5044,175 @@
 						},
 						"description": "Menghapus informasi buku"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Deleted Book Data\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Book Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/borrow/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"borrow",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Delete Book Data Error\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"description": "Layanan endpoint buku"
@@ -952,7 +5237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"God Ussop\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Santiago\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -970,7 +5255,154 @@
 						},
 						"description": "Menambahkan penulis baru"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Post Author",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"God Ussop\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Create Author Data\"\n    },\n    \"results\": {\n        \"id\": 2,\n        \"name\": \"Santiago\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"21 Centuries\",\r\n    \"authorId\": 1,\r\n    \"page\": 434,\r\n    \"years\": 2009,\r\n    \"publisher\": \"Centuries Corp\",\r\n    \"type\": \"Jurnal\",\r\n    \"quantity\": 56,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Author Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Authors",
@@ -998,7 +5430,106 @@
 						},
 						"description": "Mendapatkan daftar semua penulis"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Author Data\"\n    },\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"God Ussop\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Santiago\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Authors Not Found\"\r\n    }\r\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Author Data Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Author by Id",
@@ -1027,7 +5558,140 @@
 						},
 						"description": "Mendapatkan informasi penulis berdasarkan id"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Author Data\"\n    },\n    \"results\": {\n        \"id\": 1,\n        \"name\": \"God Ussop\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal\"\r\n    \"email\": \"hafidznaufl@gmail.com\",\r\n    \"password\": \"12312312\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Author Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"meta\": {\r\n        \"success\": false,\r\n        \"message\": \"Get Author Data Error\"\r\n    }\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Author by Name",
@@ -1045,19 +5709,114 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/authors/name/singa",
+							"raw": "{{base_url}}/authors/name/s",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"authors",
 								"name",
-								"singa"
+								"s"
 							]
 						},
 						"description": "Mendapatkan informasi penulis berdasarkan id"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/name/s",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"name",
+										"s"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Author Data By Name\"\n    },\n    \"results\": {\n        \"id\": 1,\n        \"name\": \"God Ussop\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/name/s",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"name",
+										"s"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Author Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/name/s",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"name",
+										"s"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Get Auhtor Data By Name Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Author",
@@ -1095,7 +5854,228 @@
 						},
 						"description": "Memperbarui informasi penulis"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Naufal D. Opal\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Updated Author Data\"\n    },\n    \"results\": {\n        \"id\": 0,\n        \"name\": \"Naufal D. Opal\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Validation\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Abel Makkonen Tesyafe\",\r\n    \"authorId\": 3,\r\n    \"page\": 200,\r\n    \"years\": 2023,\r\n    \"publisher\": \"Rakatama\",\r\n    \"type\": \"Cerita PEndek\",\r\n    \"quantity\": 235,\r\n    \"status\": \"Available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Author Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Update Author Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete Authors",
@@ -1124,7 +6104,175 @@
 						},
 						"description": "Menghapus penulis"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Deleted Book Data\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Param Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Param Id\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Book Not Found\"\n    }\n}"
+						},
+						{
+							"name": "500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/authors/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"authors",
+										"3"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Delete Book Data Error\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"description": "Layanan endpoint penulis"
@@ -1203,7 +6351,163 @@
 						},
 						"description": "Mengirim Pesan"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Send Message\"\n    },\n    \"results\": {\n        \"id\": \"KWd84THuQb7Xrj3Zk5aV\",\n        \"message\": \"Bismillah\",\n        \"sender\": \"Naufal\",\n        \"receiver\": \"Admin\"\n    }\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "500 Database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Database Connection Error\"\n    }\n}"
+						},
+						{
+							"name": "500 Error Send Chat",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Chat Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get All Messages",
@@ -1231,52 +6535,163 @@
 						},
 						"description": "Mendapatkan Daftar Semua Pesan"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/chat",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get All Chats\"\n    },\n    \"results\": [\n        {\n            \"id\": \"KWd84THuQb7Xrj3Zk5aV\",\n            \"message\": \"Bismillah\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        },\n        {\n            \"id\": \"Wv8ggYffWwMhjGZnjtUc\",\n            \"message\": \"\",\n            \"sender\": \"\",\n            \"receiver\": \"\"\n        },\n        {\n            \"id\": \"i14NCimMTWW4LnxlsrEb\",\n            \"message\": \"Haldadaoo\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        },\n        {\n            \"id\": \"lEGpUqwSLraPR3E73Cni\",\n            \"message\": \"Bismillah\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "500 Database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Database Connection Error\"\n    }\n}"
+						},
+						{
+							"name": "500 Error Get All Chats",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Chat Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Messages by Receiver",
 					"request": {
 						"auth": {
-							"type": "jwt",
-							"jwt": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "secret",
-									"value": "12345678",
-									"type": "string"
-								},
-								{
-									"key": "algorithm",
-									"value": "HS256",
-									"type": "string"
-								},
-								{
-									"key": "isSecretBase64Encoded",
-									"value": false,
-									"type": "boolean"
-								},
-								{
-									"key": "payload",
-									"value": "{}",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "headerPrefix",
-									"value": "Bearer",
-									"type": "string"
-								},
-								{
-									"key": "queryParamKey",
-									"value": "token",
-									"type": "string"
-								},
-								{
-									"key": "header",
-									"value": "{}",
+									"key": "token",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1284,22 +6699,179 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/chat/admin",
+							"raw": "{{base_url}}/chat/Admin",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"chat",
-								"admin"
+								"Admin"
 							]
 						},
 						"description": "Membaca pesan"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/chat/admin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"admin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Successfully Get Messages by Receiver\"\n    },\n    \"results\": [\n        {\n            \"id\": \"KWd84THuQb7Xrj3Zk5aV\",\n            \"message\": \"Bismillah\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        },\n        {\n            \"id\": \"i14NCimMTWW4LnxlsrEb\",\n            \"message\": \"Haldadaoo\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        },\n        {\n            \"id\": \"lEGpUqwSLraPR3E73Cni\",\n            \"message\": \"Bismillah\",\n            \"sender\": \"Naufal\",\n            \"receiver\": \"Admin\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "400 Invalid Client Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date"
+								}
+							],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Invalid Client Input\"\n    }\n}"
+						},
+						{
+							"name": "500 Database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Database Connection Error\"\n    }\n}"
+						},
+						{
+							"name": "500 Error Get By Receiver",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": \"Bismillah\",\r\n    \"sender\": \"Naufal\",\r\n    \"receiver\": \"Admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/send",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"send"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Create Chat Error\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Message",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
@@ -1399,7 +6971,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"genre\": \"adventure\"\r\n}",
+							"raw": "{\r\n    \"genre\": \"horror\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1407,9 +6979,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/recommendations",
+							"raw": "{{base_url}}/recommendations",
 							"host": [
-								"{{host}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"recommendations"
