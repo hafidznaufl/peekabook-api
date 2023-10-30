@@ -43,7 +43,7 @@ func (context *AdminContextImpl) CreateAdmin(ctx echo.Context, request web.Admin
 
 	existingAdmin, _ := context.AdminRepository.FindByEmail(request.Email)
 	if existingAdmin != nil {
-		return nil, fmt.Errorf("email already Exist")
+		return nil, fmt.Errorf("email already exist")
 	}
 
 	admin := req.AdminCreateRequestToAdminDomain(request)
