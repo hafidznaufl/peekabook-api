@@ -27,7 +27,6 @@ func UserDomaintoUserResponse(user *domain.User) web.UserResponse {
 		Id:       user.ID,
 		Name:     user.Name,
 		Email:    user.Email,
-		Password: user.Password,
 	}
 }
 
@@ -38,7 +37,6 @@ func ConvertUserResponse(users []domain.User) []web.UserResponse {
 			Id:       user.ID,
 			Name:     user.Name,
 			Email:    user.Email,
-			Password: user.Password,
 		}
 		results = append(results, userResponse)
 	}

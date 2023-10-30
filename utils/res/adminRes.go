@@ -24,10 +24,9 @@ func AdminSchemaToAdminDomain(user *schema.Admin) *domain.Admin {
 
 func AdminDomaintoAdminResponse(user *domain.Admin) web.AdminReponse {
 	return web.AdminReponse{
-		Id:       user.ID,
-		Name:     user.Name,
-		Email:    user.Email,
-		Password: user.Password,
+		Id:    user.ID,
+		Name:  user.Name,
+		Email: user.Email,
 	}
 }
 
@@ -35,10 +34,9 @@ func ConvertAdminResponse(users []domain.Admin) []web.AdminReponse {
 	var results []web.AdminReponse
 	for _, user := range users {
 		userResponse := web.AdminReponse{
-			Id:       user.ID,
-			Name:     user.Name,
-			Email:    user.Email,
-			Password: user.Password,
+			Id:    user.ID,
+			Name:  user.Name,
+			Email: user.Email,
 		}
 		results = append(results, userResponse)
 	}
