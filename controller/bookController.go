@@ -88,7 +88,7 @@ func (c *BookControllerImpl) GetBooksController(ctx echo.Context) error {
 }
 
 func (c *BookControllerImpl) GetBookByTitleController(ctx echo.Context) error {
-	bookTitle := ctx.Param("name")
+	bookTitle := ctx.Param("title")
 
 	result, err := c.BookContext.FindByTitle(ctx, bookTitle)
 	if err != nil {
@@ -96,7 +96,7 @@ func (c *BookControllerImpl) GetBookByTitleController(ctx echo.Context) error {
 			return ctx.JSON(http.StatusNotFound, helper.ErrorResponse("Book Not Found"))
 		}
 
-		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Get Book Data By Title Error"))
+		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("	"))
 	}
 
 	response := res.BookDomaintoBookResponse(result)
