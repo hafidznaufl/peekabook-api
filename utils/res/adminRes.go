@@ -30,11 +30,12 @@ func AdminDomaintoAdminResponse(user *domain.Admin) web.AdminReponse {
 	}
 }
 
-func UpdateAdminDomaintoAdminResponse(id uint, user *domain.Admin) web.AdminReponse {
-	return web.AdminReponse{
-		Id:    id,
-		Name:  user.Name,
-		Email: user.Email,
+func UpdateAdminDomaintoAdminResponse(id uint, user *domain.Admin) web.UpdateAdminReponse {
+	return web.UpdateAdminReponse{
+		Id:       id,
+		Name:     user.Name,
+		Email:    user.Email,
+		Password: user.Password,
 	}
 }
 
