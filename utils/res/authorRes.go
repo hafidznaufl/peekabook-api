@@ -20,6 +20,13 @@ func AuthorDomaintoAuthorResponse(author *domain.Author) web.AuthorReponse {
 	}
 }
 
+func UpdateAuthorDomaintoAuthorResponse(id uint, author *domain.Author) web.AuthorReponse {
+	return web.AuthorReponse{
+		ID:   id,
+		Name: author.Name,
+	}
+}
+
 func ConvertAuthorResponse(authors []domain.Author) []web.AuthorReponse {
 	var results []web.AuthorReponse
 	for _, author := range authors {

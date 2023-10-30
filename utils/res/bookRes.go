@@ -48,9 +48,9 @@ func CreateBookDomaintoBookResponse(book *domain.Book) web.CreateBookResponse {
 	}
 }
 
-func UpdateBookDomaintoBookResponse(book *domain.Book) web.UpdateBookResponse {
+func UpdateBookDomaintoBookResponse(id uint, book *domain.Book) web.UpdateBookResponse {
 	return web.UpdateBookResponse{
-		ID:        book.ID,
+		ID:        id,
 		Title:     book.Title,
 		AuthorID:  book.AuthorID,
 		Page:      book.Page,

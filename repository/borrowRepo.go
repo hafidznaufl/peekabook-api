@@ -154,9 +154,38 @@ func (repository *BorrowRepositoryImpl) GetBookQuantity(bookID int) (int, error)
 }
 
 func (repository *BorrowRepositoryImpl) Update(borrow *domain.Borrow, id int) (*domain.Borrow, error) {
-	result := repository.DB.Table("borrows").Where("id = ?", id).Updates(domain.Borrow{BookID: borrow.BookID, UserID: borrow.UserID, Date: borrow.Date, Return: borrow.Return, Status: borrow.Status})
+	// Memulai transaksi
+	tx := repository.DB.Begin()
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+
+	// Melakukan pembaruan pada entri dalam tabel borrows
+	result := tx.Model(&domain.Borrow{}).Where("id = ?", id).Updates(domain.Borrow{BookID: borrow.BookID, UserID: borrow.UserID, Date: borrow.Date, Return: borrow.Return, Status: borrow.Status})
 	if result.Error != nil {
+		// Jika ada kesalahan, gulirkan transaksi kembali
+		tx.Rollback()
 		return nil, result.Error
+	}
+
+	// Commit transaksi
+	if err := tx.Commit().Error; err != nil {
+		// Jika ada kesalahan saat melakukan commit, rollback dan kembalikan kesalahan
+		tx.Rollback()
+		return nil, err
+	}
+
+	// Selanjutnya, lakukan query SELECT JOIN untuk mendapatkan data yang diperlukan
+	query := `
+        SELECT borrows.*, books.title AS book_title, users.name AS user_name
+        FROM borrows
+        LEFT JOIN books ON borrows.book_id = books.id
+        LEFT JOIN users ON borrows.user_id = users.id
+        WHERE borrows.id = ?
+    `
+
+	if err := repository.DB.Raw(query, id).Scan(borrow).Error; err != nil {
+		return nil, err
 	}
 
 	return borrow, nil

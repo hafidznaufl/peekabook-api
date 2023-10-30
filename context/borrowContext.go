@@ -89,6 +89,7 @@ func (context *BorrowContextImpl) UpdateBorrow(ctx echo.Context, request web.Bor
 		return nil, fmt.Errorf("error when updating borrow: %s", err.Error())
 	}
 
+
 	return result, nil
 }
 

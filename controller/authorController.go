@@ -131,7 +131,7 @@ func (c *AuthorControllerImpl) UpdateAuthorController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusInternalServerError, helper.ErrorResponse("Update Author Error"))
 	}
 
-	response := res.AuthorDomaintoAuthorResponse(result)
+	response := res.UpdateAuthorDomaintoAuthorResponse(uint(authorIdInt), result)
 
 	return ctx.JSON(http.StatusOK, helper.SuccessResponse("Successfully Updated Author Data", response))
 }
