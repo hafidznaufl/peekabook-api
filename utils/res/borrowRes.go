@@ -53,6 +53,7 @@ func CreateBorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.CreateBorrowR
 func ReturnBorrowDomaintoBorrowResponse(borrow *domain.Borrow) web.BorrowResponse {
 	return web.BorrowResponse{
 		ID:        borrow.ID,
+		BookID:    borrow.BookID,
 		BookTitle: borrow.BookTitle,
 		UserName:  borrow.UserName,
 		Date:      borrow.Date,

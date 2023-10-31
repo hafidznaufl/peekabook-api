@@ -4,6 +4,7 @@ import "time"
 
 type BorrowResponse struct {
 	ID        uint      `json:"id"`
+	BookID    uint      `json:"bookId"`
 	BookTitle string    `json:"bookTitle"`
 	UserName  string    `json:"userName"`
 	Date      time.Time `json:"date"`
