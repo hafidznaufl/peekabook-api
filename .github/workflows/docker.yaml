@@ -17,7 +17,7 @@ jobs:
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t peekabbok-api:latest .
+      run: docker build -t peekabook-api:latest .
 
     - name: Push Docker image to Docker Hub
       run: docker push peekabook-api:latest
